@@ -24,6 +24,22 @@ body,h1,h2,button,div{
   }
 }
 
+.primary-label-color.label{
+  color: color($colors,secondary) !important;
+}
+
+.glow{
+  box-shadow: 0px 0px 10px rgba(202,163,94,0.6);
+}
+
+.validation-errors{
+  color: color($colors,danger);
+  font-size: x-small;
+}
+
+
+
+
 //---------------------------------------
 //global margin & padding
 //---------------------------------------

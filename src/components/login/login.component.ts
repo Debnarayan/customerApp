@@ -20,16 +20,16 @@ export class LoginComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', Validators.compose([
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      password: new FormControl('', Validators.compose([
+        Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')
+      ])],
+      password: ['', Validators.compose([
         Validators.minLength(5),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-      ]))
+      ])]
     });
   }
 
