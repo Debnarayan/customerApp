@@ -1,13 +1,41 @@
+
+//---------------------------------------
 // global css class
-body{
-  font-family: "Raleway" !important;
-  font-weight: 400 !important;
+//---------------------------------------
+
+//body{
+//  font-face: "Raleway" !important;
+//  font-weight: 400 !important;
+//}
+
+body,h1,h2,button,div{
+  font-family: 'Raleway', sans-serif !important;
 }
-h1, h2, button {
-  font-family: "Raleway" !important;
+.list-ios > .item-block:first-child{
+  border-top:none;
 }
 
+.no-line-last-child.list{
+  .item-block:last-child{
+    border-bottom: none;
+    .item-inner{
+      border-bottom: 0.55px solid color($colors,light);
+    }
+  }
+}
+
+//---------------------------------------
+//global margin & padding
+//---------------------------------------
+.padding-left-none{
+  padding-left: 0;
+}
+
+
+
+//---------------------------------------
 //for app.html page
+//---------------------------------------
 .border-left-3{
   border-left: 3px solid color($colors,light);
 }
@@ -25,12 +53,17 @@ h1, h2, button {
 }
 
 
+//---------------------------------------
 //background-colors
+//---------------------------------------
 .dark-bg{
   background: color($colors, primary-dark);
 }
 
+
+//---------------------------------------
 //text-colors
+//---------------------------------------
 .light{
   color: color($colors,light);
 }

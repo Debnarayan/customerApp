@@ -1,4 +1,37 @@
 <!-- Generated template for the LoginComponent component -->
-<div style="display: inline-flex;">
-  <i class="material-icons md-36">face</i><div class="padding-top-5">{{text}}</div>
+<!--<div style="display: inline-flex;">-->
+  <!--<i class="material-icons md-36">face</i><div class="padding-top-5">{{text}}</div>-->
+<!--</div>-->
+
+<form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+<ion-list class="no-line-last-child">
+
+  <ion-item class="dark-bg">
+    <ion-label floating class="primary-label-color">Email</ion-label>
+    <ion-input type="email" class="light" formControlName="email" required></ion-input>
+  </ion-item>
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of validationMessages.email">
+      <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+
+  <ion-item class="dark-bg">
+    <ion-label floating class="primary-label-color">Password</ion-label>
+    <ion-input type="password" class="light"></ion-input>
+  </ion-item>
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of validationMessages.password">
+      <div class="error-message" *ngIf="loginForm.get('matching_passwords').get('password').hasError(validation.type) && (loginForm.get('matching_passwords').get('password').dirty || loginForm.get('matching_passwords').get('password').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+
+</ion-list>
+
+<div text-center>
+<button ion-button color="secondary" outline type="submit" [disabled]="!loginForm.valid">LOG IN</button>
 </div>
