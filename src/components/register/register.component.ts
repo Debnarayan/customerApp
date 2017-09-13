@@ -2,12 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PasswordValidator} from "../../validators/password.validator";
 
-/**
- * Generated class for the RegisterComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'app-register',
   templateUrl: 'register.component.html'
@@ -21,24 +16,23 @@ export class RegisterComponent implements OnInit {
     console.log('Hello RegisterComponent Component ');
   }
 
-  ionViewWillLoad(){
-      this.isPasswordMatched = this.formBuilder.group({
-          password: ['', Validators.compose([
-              Validators.minLength(5),
-              Validators.required,
-              Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-          ])],
-          confirm_password: ['', Validators.required]
-      }, (formGroup: FormGroup) => {
-          return PasswordValidator.areEqual(formGroup);
-      });
-  }
 
     ngOnInit() {
 
+        this.isPasswordMatched = this.formBuilder.group({
+            password: ['', Validators.compose([
+                Validators.minLength(5),
+                Validators.required,
+                Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+            ])],
+            confirm_password: ['', Validators.required]
+        }, (formGroup: FormGroup) => {
+            return PasswordValidator.areEqual(formGroup);
+        });
+
         this.registrationForm = this.formBuilder.group({
-            firstname: ['', Validators.required],
-            lastname: ['', Validators.required],
+            first_name: ['', Validators.required],
+            last_name: ['', Validators.required],
             matching_passwords: this.isPasswordMatched,
             email: ['', Validators.compose([
                 Validators.required,
@@ -55,10 +49,10 @@ export class RegisterComponent implements OnInit {
     }
 
     validationMessages = {
-        'firstname': [
+        'first_name': [
             { type: 'required', message: 'Name is required.' }
         ],
-        'lastname': [
+        'last_name': [
             { type: 'required', message: 'Last name is required.' }
         ],
         'email': [
