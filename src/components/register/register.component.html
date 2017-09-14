@@ -2,7 +2,7 @@
     <ion-list class="no-line-last-child">
         <ion-item class="dark-bg">
             <ion-label floating color="primary" class="primary-label-color">First Name</ion-label>
-            <ion-input type="text" formControlName="first_name" class="light" required></ion-input>
+            <ion-input type="text" formControlName="first_name" class="light"></ion-input>
         </ion-item>
         <div padding-horizontal class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.first_name">
@@ -15,7 +15,7 @@
 
         <ion-item class="dark-bg">
             <ion-label floating color="primary" class="primary-label-color">Last Name</ion-label>
-            <ion-input type="text" formControlName="last_name" class="light" required></ion-input>
+            <ion-input type="text" formControlName="last_name" class="light"></ion-input>
         </ion-item>
         <div padding-horizontal class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.lastname">
@@ -40,38 +40,14 @@
         </div>
 
 
-        <div formGroupName="matching_passwords">
-            <ion-item class="dark-bg">
-                <ion-label floating color="primary" class="primary-label-color">Password</ion-label>
-                <ion-input type="password" formControlName="password" class="light"></ion-input>
-            </ion-item>
-            <div padding-horizontal class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.password">
-                    <div class="error-message"
-                         *ngIf="registrationForm.get('matching_passwords').get('password').hasError(validation.type) && (registrationForm.get('matching_passwords').get('password').dirty || registrationForm.get('matching_passwords').get('password').touched)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
-            </div>
-
-            <ion-item class="dark-bg">
-                <ion-label floating color="primary" class="primary-label-color">Confirm Password</ion-label>
-                <ion-input type="password" formControlName="confirm_password" class="light"></ion-input>
-            </ion-item>
-            <div padding-horizontal class="validation-errors">
-                <ng-container *ngFor="let validation of validationMessages.confirm_password">
-                    <div class="error-message"
-                         *ngIf="registrationForm.get('matching_passwords').get('confirm_password').hasError(validation.type) && (registrationForm.get('matching_passwords').get('confirm_password').dirty || registrationForm.get('matching_passwords').get('confirm_password').touched)">
-                        {{ validation.message }}
-                    </div>
-                </ng-container>
-            </div>
-        </div>
-        <!-- These validations are for the form group -->
+        <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">Password</ion-label>
+            <ion-input type="password" formControlName="password" class="light"></ion-input>
+        </ion-item>
         <div padding-horizontal class="validation-errors">
-            <ng-container *ngFor="let validation of validationMessages.matching_passwords">
+            <ng-container *ngFor="let validation of validationMessages.password">
                 <div class="error-message"
-                     *ngIf="registrationForm.get('matching_passwords').hasError(validation.type) && (registrationForm.get('matching_passwords').get('confirm_password').dirty || registrationForm.get('matching_passwords').get('confirm_password').touched)">
+                     *ngIf="registrationForm.get('password').hasError(validation.type) && (registrationForm.get('password').dirty || registrationForm.get('password').touched)">
                     {{ validation.message }}
                 </div>
             </ng-container>
@@ -79,8 +55,33 @@
 
 
         <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">Confirm Password</ion-label>
+            <ion-input type="password" formControlName="confirm_password" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.confirm_password">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('confirm_password').hasError(validation.type) && (registrationForm.get('confirm_password').dirty || registrationForm.get('confirm_password').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- For Password and Confirm Password Matching Validation -->
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.matching_passwords">
+                <div class="error-message"
+                     *ngIf="registrationForm.hasError(validation.type) && (registrationForm.get('confirm_password').dirty || registrationForm.get('confirm_password').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+
+        <ion-item class="dark-bg">
             <ion-label floating color="primary" class="primary-label-color">Phone</ion-label>
-            <ion-input type="text" formControlName="phone" class="light"></ion-input>
+            <ion-input type="number" formControlName="phone" class="light"></ion-input>
         </ion-item>
         <div padding-horizontal class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.phone">
@@ -92,37 +93,141 @@
         </div>
 
 
-      <!--<ion-item class="dark-bg">-->
-        <!--<ion-label floating color="primary" class="primary-label-color">Phone</ion-label>-->
-        <!--<ion-input type="text" formControlName="phone" class="light"></ion-input>-->
-      <!--</ion-item>-->
-      <ion-list radio-group formControlName="mode_of_communication">
+        <ion-list radio-group formControlName="mode_of_communication">
+            <ion-list-header text-wrap class="dark-bg no-border sentence-case" color="secondary">
+                Please tell us your preferred mode to receive communications from us
+            </ion-list-header>
+            <ion-row justify-content-center>
+                <ion-col col-3 class="same-line">
+                    <ion-label color="light" no-margin>Email</ion-label>
+                    <ion-radio color="secondary" value="email"></ion-radio>
+                </ion-col>
 
-        <ion-list-header text-wrap class="dark-bg" color="secondary">
-          Please tell us your preferred mode to receive communications from us
-        </ion-list-header>
-      <ion-row justify-content-center="">
-        <ion-col col-3 class="same-line">
-          <ion-label color="light" no-margin>Email</ion-label>
-          <ion-radio color="secondary" value="email"></ion-radio>
-        </ion-col>
+                <ion-col col-3 class="same-line">
+                    <ion-label color="light" no-margin>Mobile</ion-label>
+                    <ion-radio color="secondary" value="mobile"></ion-radio>
+                </ion-col>
 
-        <ion-col col-3 class="same-line">
-          <ion-label color="light" no-margin>Mobile</ion-label>
-          <ion-radio color="secondary" value="mobile"></ion-radio>
-        </ion-col>
+                <ion-col col-3 class="same-line">
+                    <ion-label color="light" no-margin>Both</ion-label>
+                    <ion-radio color="secondary" value="all"></ion-radio>
+                </ion-col>
+            </ion-row>
+        </ion-list>
 
-        <ion-col col-3 class="same-line">
-          <ion-label color="light" no-margin>Both</ion-label>
-          <ion-radio color="secondary" value="all" checked="true"></ion-radio>
-        </ion-col>
-      </ion-row>
-      </ion-list>
+
+        <ion-item class="dark-bg">
+            <ion-label stacked color="primary" class="primary-label-color">Birthday</ion-label>
+            <ion-input type="date" formControlName="dob" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.dob">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('dob').hasError(validation.type) && (registrationForm.get('dob').dirty || registrationForm.get('dob').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+        <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">Address</ion-label>
+            <ion-input type="text" formControlName="address" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.address">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('address').hasError(validation.type) && (registrationForm.get('address').dirty || registrationForm.get('address').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+        <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">State</ion-label>
+            <ion-input type="text" formControlName="state" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.state">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('state').hasError(validation.type) && (registrationForm.get('state').dirty || registrationForm.get('state').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+        <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">City</ion-label>
+            <ion-input type="text" formControlName="city" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.city">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('city').hasError(validation.type) && (registrationForm.get('city').dirty || registrationForm.get('city').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+        <ion-item class="dark-bg">
+            <ion-label floating color="primary" class="primary-label-color">Pincode</ion-label>
+            <ion-input type="number" formControlName="pincode" class="light"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.pincode">
+                <div class="error-message"
+                     *ngIf="registrationForm.get('pincode').hasError(validation.type) && (registrationForm.get('pincode').dirty || registrationForm.get('pincode').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
 
         <ion-item class="dark-bg" no-lines>
-            <ion-label text-wrap color="primary" class="primary-label-color">I accept terms and conditions</ion-label>
-            <ion-checkbox formControlName="terms" class="light"></ion-checkbox>
+            <ion-label text-wrap color="light" class="text-sm">
+                By registering and using a Gift Card you become a {{"APP_NAME"}} member and can earn rewards, like free
+                drinks.
+            </ion-label>
         </ion-item>
+
+
+        <ion-item class="dark-bg padding-left-32" padding-right>
+            <ion-input type="text" placeholder="Card Number(Optional)" formControlName="card_number"
+                       class="light"></ion-input>
+        </ion-item>
+
+
+        <ion-item class="dark-bg padding-left-32" padding-right>
+            <ion-input type="text" placeholder="Card Security Number(CSC)" formControlName="card_security_key"
+                       class="light"></ion-input>
+        </ion-item>
+
+
+        <ion-item class="dark-bg" padding-top no-lines>
+            <ion-label color="secondary">Subscribe</ion-label>
+            <ion-toggle formControlName="is_subscribe" color="secondary"></ion-toggle>
+        </ion-item>
+
+
+        <ion-item class="dark-bg" no-lines>
+            <ion-label text-wrap color="light" class="text-sm">
+                {{"Yes"}}, I {{"would"}} like to receive membership communication, news, special offers and more from {{"APP_NAME"}}
+            </ion-label>
+        </ion-item>
+
+
+        <div padding class="dark-bg same-line" no-lines>
+            <ion-checkbox padding-right formControlName="terms" class="light"></ion-checkbox>
+            <div text-wrap class="light">
+                I agree to the
+                <a class="secondary" (click)="viewTerms()">Terms of Use</a>
+                and
+                <a class="secondary" (click)="viewPolicy()">Privacy Policy</a>
+            </div>
+        </div>
         <div padding-horizontal class="validation-errors">
             <ng-container *ngFor="let validation of validationMessages.terms">
                 <div class="error-message"
@@ -132,7 +237,7 @@
             </ng-container>
         </div>
     </ion-list>
-    <div text-center>
+    <div text-center padding-bottom>
         <button ion-button color="secondary" outline type="submit" [disabled]="!registrationForm.valid">SIGN UP</button>
     </div>
 </form>

@@ -15,6 +15,10 @@ body,h1,h2,button,div{
   border-top:none;
 }
 
+a{
+  text-decoration: none;
+}
+
 .no-line-last-child.list{
   .item-block:last-child{
     border-bottom: none;
@@ -41,8 +45,17 @@ body,h1,h2,button,div{
   font-size: x-small;
 }
 
+.item-input-has-focus>.item-inner{
+  border-bottom-color: color($colors,light) !important;
+}
 
+.sentence-case{
+  text-transform: lowercase;
 
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
 
 //---------------------------------------
 //global margin & padding
@@ -51,6 +64,9 @@ body,h1,h2,button,div{
   padding-left: 0;
 }
 
+.padding-left-32{
+  padding-left: 32px;
+}
 
 
 //---------------------------------------
@@ -86,4 +102,21 @@ body,h1,h2,button,div{
 //---------------------------------------
 .light{
   color: color($colors,light);
+}
+
+.secondary{
+  color: color($colors,secondary);
+}
+
+
+//---------------------------------------
+//text-size
+//---------------------------------------
+
+.text-sm{
+  font-size: small;
+}
+
+.text-xs{
+  font-size: x-small;
 }
