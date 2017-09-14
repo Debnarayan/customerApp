@@ -92,8 +92,35 @@
         </div>
 
 
+      <!--<ion-item class="dark-bg">-->
+        <!--<ion-label floating color="primary" class="primary-label-color">Phone</ion-label>-->
+        <!--<ion-input type="text" formControlName="phone" class="light"></ion-input>-->
+      <!--</ion-item>-->
+      <ion-list radio-group formControlName="mode_of_communication">
+
+        <ion-list-header text-wrap class="dark-bg" color="secondary">
+          Please tell us your preferred mode to receive communications from us
+        </ion-list-header>
+      <ion-row justify-content-center="">
+        <ion-col col-3 class="same-line">
+          <ion-label color="light" no-margin>Email</ion-label>
+          <ion-radio color="secondary" value="email"></ion-radio>
+        </ion-col>
+
+        <ion-col col-3 class="same-line">
+          <ion-label color="light" no-margin>Mobile</ion-label>
+          <ion-radio color="secondary" value="mobile"></ion-radio>
+        </ion-col>
+
+        <ion-col col-3 class="same-line">
+          <ion-label color="light" no-margin>Both</ion-label>
+          <ion-radio color="secondary" value="all" checked="true"></ion-radio>
+        </ion-col>
+      </ion-row>
+      </ion-list>
+
         <ion-item class="dark-bg" no-lines>
-            <ion-label color="primary" class="primary-label-color">I accept terms and conditions</ion-label>
+            <ion-label text-wrap color="primary" class="primary-label-color">I accept terms and conditions</ion-label>
             <ion-checkbox formControlName="terms" class="light"></ion-checkbox>
         </ion-item>
         <div padding-horizontal class="validation-errors">

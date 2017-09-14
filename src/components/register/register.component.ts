@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
                 Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
             ])],
             phone: ['', Validators.required],
+            mode_of_communication: [Validators.required],
             terms: [true, Validators.pattern('true')]
         });
     }
