@@ -1,0 +1,36 @@
+<!--
+  Generated template for the PaymentMethodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Payment Method</ion-title>
+      <ion-buttons end>
+          <button ion-button clear (click)="onDismiss()">Cancel</button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="primary-light-bg">
+    <ion-list-header margin-top class="margin-bottom-none">
+        ACTIVE PAYMENT METHOD
+    </ion-list-header>
+    <ion-item margin-bottom no-lines (click)="setCardForCurrentTransaction()">
+        <ion-thumbnail class="payment-card-thumbnail" item-left>
+            <img class="payment-card-thumbnail" src="./assets/logo/visa.png">
+        </ion-thumbnail>
+        <ion-label item-right>**********647</ion-label>
+    </ion-item>
+
+    <ion-item margin-vertical no-lines>
+        <button item-left ion-button small icon-only>
+            <ion-icon name="md-add"></ion-icon>
+        </button>
+        <ion-label>Add New Card</ion-label>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,59 @@
+<form class="form" [formGroup]="contactUsForm" (ngSubmit)="onSubmit(contactUsForm)">
+    <ion-list padding-horizontal class="no-line-last-child">
+
+        <ion-item padding-horizontal>
+            <ion-label floating color="primary" class="primary-label-color">Name</ion-label>
+            <ion-input type="text" formControlName="name" class="primary"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.name">
+                <div class="error-message"
+                     *ngIf="contactUsForm.get('name').hasError(validation.type) && (contactUsForm.get('name').dirty || contactUsForm.get('name').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item padding-horizontal>
+            <ion-label floating color="primary" class="primary-label-color">Email</ion-label>
+            <ion-input type="text" formControlName="email" class="primary"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.email">
+                <div class="error-message"
+                     *ngIf="contactUsForm.get('email').hasError(validation.type) && (contactUsForm.get('email').dirty || contactUsForm.get('email').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+
+        <ion-item padding-horizontal>
+            <ion-label floating color="primary" class="primary-label-color">Phone</ion-label>
+            <ion-input type="number" formControlName="phone" class="primary"></ion-input>
+        </ion-item>
+
+
+        <ion-item padding-horizontal>
+            <ion-label floating color="primary" class="primary-label-color">Subject</ion-label>
+            <ion-input type="text" formControlName="subject" class="primary"></ion-input>
+        </ion-item>
+        <div padding-horizontal class="validation-errors">
+            <ng-container *ngFor="let validation of validationMessages.subject">
+                <div class="error-message"
+                     *ngIf="contactUsForm.get('subject').hasError(validation.type) && (contactUsForm.get('subject').dirty || contactUsForm.get('subject').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item padding-horizontal class="custom-description-height">
+            <!--<ion-label floating color="primary" class="primary-label-color">Subject</ion-label>-->
+            <ion-textarea placeholder="Description" type="text" formControlName="description" class="primary custom-textarea-height"></ion-textarea>
+        </ion-item>
+
+        <div class="light-bg" text-center padding-vertical>
+            <button ion-button color="secondary" outline type="submit" [disabled]="!contactUsForm.valid">Submit</button>
+        </div>
+    </ion-list>
+</form>

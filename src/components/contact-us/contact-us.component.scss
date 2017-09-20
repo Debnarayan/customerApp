@@ -1,0 +1,15 @@
+app-contact-us {
+
+  .custom-description-height{
+    height: 120px;
+  }
+
+  .custom-textarea-height>textarea{
+    @extend .custom-description-height;
+  }
+
+  .validation-errors{
+    background-color: white;
+  }
+
+}

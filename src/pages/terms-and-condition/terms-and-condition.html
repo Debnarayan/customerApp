@@ -1,0 +1,77 @@
+<!--
+  Generated template for the TermsAndConditionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title class="title-xs">Terms And Condition</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding text-justify class="dark-bg light">
+    <!--<h3>Terms of Use</h3>-->
+    <!--<p>-->
+        <!--<span class="strong">PLEASE CAREFULLY REVIEW THE TERMS OF USE OF THIS SITE.</span>-->
+        <!--As your use of the site will indicate your acceptance of these terms, do not use the site if you do not agree to be bound by these terms. We may periodically change the terms, so please check them from time to time as your continued use of the site signifies your acceptance of any changed items.-->
+        <!--If you have any comments or queries, or there is any provision that you do not understand, please feel free to email any enquiry to us at <a class="secondary" (click)="composeMail('ukinfo@starbucks.co.uk')">ukinfo@starbucks.co.uk</a>-->
+    <!--</p>-->
+    <!--<p class="strong">-->
+        <!--WHILE WE MAKE REASONABLE EFFORTS TO PROVIDE ACCURATE AND TIMELY INFORMATION ABOUT STARBUCKS COFFEE COMPANY UK LIMITED (‘STARBUCKS’) ON THIS SITE, YOU SHOULD NOT ASSUME THAT THE INFORMATION PROVIDED IS ALWAYS UP TO DATE OR THAT THIS SITE CONTAINS ALL THE RELEVANT INFORMATION AVAILABLE ABOUT STARBUCKS. IN PARTICULAR, IF YOU ARE MAKING AN INVESTMENT DECISION REGARDING STARBUCKS, PLEASE CONSULT A NUMBER OF DIFFERENT SOURCES.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">COPYRIGHT AND TRADEMARK.</span>-->
+        <!--Unless otherwise noted, all materials on this site are protected as the copyrights, trade dress, trademarks and/or other intellectual properties owned by Starbucks and/or its subsidiaries and affiliates or by other parties that have licensed their material to Starbucks.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--All rights not expressly granted are reserved.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">PERSONAL USE.</span>-->
+        <!--Your use of the materials included on this site is for informational purposes only. You agree you will not distribute, publish, transmit, modify, display or create derivative works from or exploit the contents of this site in any way. You may not copy, distribute or display materials on this site or any part of it to third parties.  You may not link to or mirror any part of this site.  No other use, reproduction or distribution is permitted without prior written permission.  Any infringement of these rights will result in appropriate legal action. You agree to indemnify, defend and hold harmless Starbucks for any and all unauthorised uses you may make of any material on the site. You acknowledge the unauthorised use of the contents could cause irreparable harm to Starbucks and that in the event of an unauthorised use, Starbucks shall be entitled to an injunction in addition to any other remedies available at law or in equity.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">FEEDBACK AND SUBMISSIONS.</span>-->
+        <!--You agree you are and shall remain solely responsible for the contents of any submissions you make, and you will not submit material that is unlawful, defamatory, abusive or obscene. You agree that you will not submit anything to the site that will violate any right of any third party, including copyright, trademark, privacy or other personal or proprietary right(s).<br>-->
+        <!--While we appreciate your interest in Starbucks, we do not want and cannot accept any ideas you consider to be proprietary regarding designs, product technology or other suggestions you may have developed. Consequently, any material you submit to this site will be deemed a grant of a royalty free non-exclusive right and license to use, reproduce, modify, display, transmit, adapt, publish, translate, create derivative works from and distribute these materials throughout the universe in any medium and through any methods of distribution, transmission and display whether now known or hereafter devised. In addition, you warrant that all so-called "moral rights" have been waived.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">LINKS.</span>-->
+        <!--Some links on the site will allow you to connect with sites that are not under our control. Starbucks is providing these links only as a convenience. The appearance of a link does not imply Starbucks endorsement, nor is Starbucks responsible for the contents of any linked site. You access them at your own risk.-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">PRIVACY & SECURITY.</span>-->
+        <!--For an explanation of Starbucks practices and policies related to the collection, use and storage of our online guests' information, please read our Privacy Policy-->
+    <!--</p>-->
+    <!--<p>-->
+        <!--<span class="strong">Company Information</span>-->
+        <!--<br><br>-->
+
+        <!--Registered Address:<br>-->
+
+        <!--Starbucks Coffee Company (UK) Ltd<br>-->
+        <!--Building 4<br>-->
+        <!--Chiswick Park<br>-->
+        <!--566 Chiswick High Road<br>-->
+        <!--London<br>-->
+        <!--W4 5YE<br>-->
+        <!--Registered No 2959325-->
+    <!--</p>-->
+
+    <div [innerHTML]="pageContent">
+
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col ion-button clear color="secondary" (click)="declineTerms()">DECLINE</ion-col>
+            <ion-col ion-button clear color="secondary" class="border-left" (click)="acceptTerms()">ACCEPT</ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
