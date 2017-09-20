@@ -1,26 +1,16 @@
-<ion-menu [content]="content">
+<ion-menu swipeEnabled="false" [content]="content">
   <ion-header>
     <ion-toolbar no-padding>
-      <ion-slides no-padding class="slide-custom-height" pager="true" loop="true" autoplay="1000">
-        <ion-slide>
-          <img class="slide-banner-height" src="./assets/banner/snack.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="./assets/banner/offers.jpg">
-        </ion-slide>
-        <ion-slide>
-          <img src="./assets/banner/burger.jpg">
-        </ion-slide>
-      </ion-slides>
+    <app-side-menu-slider></app-side-menu-slider>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="dark-bg">
-    <ion-list no-lines>
-      <button menuClose ion-item class="dark-bg light border-left-3" *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+      <ion-list no-lines class="border-bottom">
+          <button menuClose ion-item class="dark-bg secondary" [class.highlight]="isActivePage(p)" *ngFor="let p of pages" (click)="openPage(p)">
+              {{p.title}}
+          </button>
+      </ion-list>
   </ion-content>
 
 </ion-menu>

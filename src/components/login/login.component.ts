@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoginForm} from "../../interfaces/login-form.interface";
+import {AuthUserProvider} from "../../providers/auth/auth-user.service";
 
 /**
  * Generated class for the LoginComponent component.
@@ -8,46 +10,47 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
  * Components.
  */
 @Component({
-  selector: 'app-login',
-  templateUrl: 'login.component.html'
+    selector: 'app-login',
+    templateUrl: 'login.component.html'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+    loginForm: FormGroup;
+    @Output() loginResponse: EventEmitter<LoginForm>;
 
-  constructor(private formBuilder: FormBuilder) {
-    console.log('Hello LoginComponent Component');
-  }
+    constructor(private formBuilder: FormBuilder,
+                private auth: AuthUserProvider) {
+        console.log('Hello LoginComponent Component');
+        this.loginResponse = new EventEmitter<LoginForm>();
+    }
 
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')
-      ])],
-      password: ['', Validators.compose([
-        Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-      ])]
-    });
-  }
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            email: ['', Validators.compose([
+                Validators.required,
+                Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')
+            ])],
+            password: ['', Validators.required]
+        });
+    }
 
-  validationMessages = {
-    'email': [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
-    ],
-    'password': [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
-    ]
-  };
+    validationMessages = {
+        'email': [
+            {type: 'required', message: 'Email is required.'},
+            {type: 'pattern', message: 'Enter a valid email.'}
+        ],
+        'password': [
+            {type: 'required', message: 'Password is required.'}
+        ]
+    };
 
-  onSubmit(formValue) {
-    console.log(formValue);
-    console.log(this.loginForm.value)
-  }
+    async onSubmit({value, valid}: { value: LoginForm, valid: Boolean }) {
+        if (valid) {
+            await this.auth.getUserData(value, 'secure/cust_login')
+                .subscribe((data) => {
+                    this.loginResponse.emit(data);
+                })
+        }
+    }
 
 }

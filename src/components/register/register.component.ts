@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
     registrationForm: FormGroup;
     // isPasswordMatched: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private iab: InAppBrowser) {
+  constructor(private formBuilder: FormBuilder,
+              private iab: InAppBrowser) {
     console.log('Hello RegisterComponent Component');
   }
 

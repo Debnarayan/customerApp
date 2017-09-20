@@ -1,12 +1,30 @@
 
 //---------------------------------------
+//for app.html page
+//---------------------------------------
+
+.slide-custom-height{
+  height: 150px;
+}
+
+.slide-banner-height{
+  height: 156px !important;
+  width: 100%;
+}
+
+.swiper-pagination-bullet{
+  background: color($colors,light);
+}
+
+.highlight{
+  border-left: 3px solid color($colors,light) !important;
+}
+
+
+//---------------------------------------
 // global css class
 //---------------------------------------
 
-//body{
-//  font-face: "Raleway" !important;
-//  font-weight: 400 !important;
-//}
 
 body,h1,h2,button,div{
   font-family: 'Raleway', sans-serif !important;
@@ -19,11 +37,11 @@ a{
   text-decoration: none;
 }
 
-.no-line-last-child.list{
+.no-line-last-child{
   .item-block:last-child{
     border-bottom: none;
     .item-inner{
-      border-bottom: 0.55px solid color($colors,light);
+      border-bottom: 0.55px solid #c8c7cc;
     }
   }
 }
@@ -34,6 +52,10 @@ a{
 
 .same-line{
   display: inline-flex;
+}
+
+.new-line{
+  display:block;
 }
 
 .glow{
@@ -49,13 +71,40 @@ a{
   border-bottom-color: color($colors,light) !important;
 }
 
-.sentence-case{
+.sentence-case>.item-inner>.input-wrapper>.label{
   text-transform: lowercase;
 
   &:first-letter {
     text-transform: capitalize;
   }
 }
+
+.border-left{
+  border-left: 1px solid color($colors,light);
+}
+
+.border-right{
+  border-right: 1px solid color($colors,light);
+}
+.border-right{
+  border-right: 1px solid color($colors,light);
+}
+
+//-------------------------------------
+//header section
+//------------------------------------
+.title-light>.toolbar-title{
+  @extend .light;
+}
+
+
+
+//------------------------------------
+//page-container
+//------------------------------------
+
+
+
 
 //---------------------------------------
 //global margin & padding
@@ -70,30 +119,39 @@ a{
 
 
 //---------------------------------------
-//for app.html page
-//---------------------------------------
-.border-left-3{
-  border-left: 3px solid color($colors,light);
-}
-
-.slide-custom-height{
-  height: 150px;
-}
-
-.slide-banner-height{
-  height: 156px;
-}
-
-.swiper-pagination-bullet{
-  background: color($colors,light);
-}
-
-
-//---------------------------------------
 //background-colors
 //---------------------------------------
 .dark-bg{
   background: color($colors, primary-dark);
+}
+
+.light-bg{
+  background: color($colors, white);
+}
+
+.primary-light-bg{
+  background: color($colors, primary-light);
+}
+
+
+/*
+------------------------------------------------
+              Text CSS Properties
+------------------------------------------------
+text-decoration
+text-color
+text-size
+*/
+
+//---------------------------------------
+//text-decoration
+//---------------------------------------
+.strong{
+  font-weight: bold;
+}
+
+.buttton{
+  text-transform: none;
 }
 
 
@@ -108,6 +166,9 @@ a{
   color: color($colors,secondary);
 }
 
+.primary-light{
+color: color($colors,primary-light);
+}
 
 //---------------------------------------
 //text-size

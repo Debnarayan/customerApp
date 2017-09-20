@@ -17,5 +17,5 @@
 
 
 <ion-content padding-right class="dark-bg">
-  <app-login></app-login>
+  <app-login (loginResponse)="checkUserLoginByEmailAndPassword($event)"></app-login>
 </ion-content>
