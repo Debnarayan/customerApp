@@ -1,0 +1,17 @@
+app-product-details {
+  .prod-img-container{
+    height: 200px;
+    position: relative;
+    background-color: gray;
+  }
+
+  .product-img{
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+  }
+
+  .text-content{
+    text-overflow: ellipsis
+  }
+}

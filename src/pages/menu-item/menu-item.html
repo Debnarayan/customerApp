@@ -1,0 +1,35 @@
+
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle color="light">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Menu</ion-title>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+        <ion-segment [(ngModel)]="icons" color="secondary">
+            <ion-segment-button [attr.padding-top]="isiOS ? '' : null" value="camera">
+                <!--<ion-icon name="camera"></ion-icon>-->
+                Menu
+            </ion-segment-button>
+            <ion-segment-button [attr.padding-top]="isiOS ? '' : null" value="bookmark">
+                <!--<ion-icon name="bookmark"></ion-icon>-->
+                Featured
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding class="primary-light-bg">
+    <div [ngSwitch]="icons">
+        <div *ngSwitchCase="'camera'">
+            <app-menu-item></app-menu-item>
+        </div>
+        <div *ngSwitchCase="'bookmark'">
+            <app-featured-item></app-featured-item>
+        </div>
+    </div>
+</ion-content>

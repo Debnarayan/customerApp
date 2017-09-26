@@ -79,6 +79,11 @@ a{
   }
 }
 
+.no-navbar>.toolbar-background{
+  border: none;
+  background: none;
+}
+
 .border-left{
   border-left: 1px solid color($colors,light);
 }
@@ -126,6 +131,10 @@ a{
 }
 
 .light-bg{
+  background: color($colors, light);
+}
+
+.white-bg{
   background: color($colors, white);
 }
 
@@ -180,4 +189,16 @@ color: color($colors,primary-light);
 
 .text-xs{
   font-size: x-small;
+}
+
+.text-lg{
+  font-size: large;
+}
+
+.text-xl{
+  font-size: x-large;
+}
+
+.text-xxl{
+  font-size: xx-large;
 }

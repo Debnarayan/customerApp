@@ -1,0 +1,36 @@
+app-menu-item {
+  .container1{
+    margin-top: 0;
+  }
+
+  .container2{
+    margin-top: 170px;
+  }
+
+  ion-scroll>.scroll-content{
+    margin-top: 0;
+    height: 160px;
+    padding: 0 !important;
+  }
+
+  .circular-menu-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 10px auto 0;
+  }
+
+  .circular-menu-item img {
+    width: 80px;
+    margin-top: 10%;
+    height: 80px;
+    margin-left: 10%;
+  }
+
+  .menu-item-card{
+    width: 100%;
+    box-shadow: none;
+  }
+}

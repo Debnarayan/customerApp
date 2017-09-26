@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {AppConfig} from "../../config/app.config";
-import {Observable} from "rxjs/Observable";
+// import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AuthAppProvider {

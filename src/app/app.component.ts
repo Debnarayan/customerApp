@@ -33,7 +33,8 @@ export class MyApp {
             // {title: 'List', component: ListPage},
             // {title: 'Register', component: 'RegisterPage'},
             {title: 'Gifts', component: 'AddGiftPage'},
-            {title: 'Contact Us', component: 'ContactUsPage'}
+            {title: 'Contact Us', component: 'ContactUsPage'},
+            {title: 'Menu', component: 'MenuItemPage'}
         ];
     }
 

@@ -3,31 +3,43 @@ import {IonicModule} from "ionic-angular";
 
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {SideMenuSliderComponent} from './side-menu-slider/side-menu-slider.component';
+import {SideMenuHeaderComponent} from './side-menu-header/side-menu-header.component';
 import {AddGiftComponent} from './add-gift/add-gift.component';
 import {NewGiftCardComponent} from './new-gift-card/new-gift-card.component';
 import {AddRecipientComponent} from './add-recipient/add-recipient.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { FeaturedItemComponent } from './featured-item/featured-item.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ExpandableHeader } from './expandable-header/expandable-header';
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegisterComponent,
-        SideMenuSliderComponent,
+        SideMenuHeaderComponent,
         AddGiftComponent,
         NewGiftCardComponent,
         AddRecipientComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        MenuItemComponent,
+    FeaturedItemComponent,
+    ProductDetailsComponent,
+    ExpandableHeader
     ],
     imports: [IonicModule],
     exports: [
         LoginComponent,
         RegisterComponent,
-        SideMenuSliderComponent,
+        SideMenuHeaderComponent,
         AddGiftComponent,
         NewGiftCardComponent,
         AddRecipientComponent,
-        ContactUsComponent
+        ContactUsComponent,
+        MenuItemComponent,
+    FeaturedItemComponent,
+    ProductDetailsComponent,
+    ExpandableHeader
     ]
 })
 export class ComponentsModule {

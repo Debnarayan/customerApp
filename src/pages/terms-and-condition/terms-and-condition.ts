@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EmailComposer} from "@ionic-native/email-composer";
 
-/**
- * Generated class for the TermsAndConditionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-terms-and-condition',
@@ -16,11 +9,13 @@ import {EmailComposer} from "@ionic-native/email-composer";
 })
 export class TermsAndConditionPage {
 
+    pageTitle:string;
     pageContent:string;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
               private emailComposer: EmailComposer) {
+      this.pageTitle = navParams.data.content.page_title;
       this.pageContent = navParams.data.content.page_content;
   }
 

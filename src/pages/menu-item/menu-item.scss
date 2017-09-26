@@ -1,0 +1,13 @@
+page-menu-item {
+  .toolbar{
+    height: 70px;
+  }
+
+  ion-segment,ion-segment-button{
+    height: 56px !important;
+  }
+
+  .scroll-content,.fixed-content{
+    margin-top: 140px;
+  }
+}

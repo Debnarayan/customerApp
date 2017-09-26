@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-side-menu-slider',
-  templateUrl: 'side-menu-slider.component.html'
+  selector: 'app-side-menu-header',
+  templateUrl: 'side-menu-header.component.html'
 })
-export class SideMenuSliderComponent {
+export class SideMenuHeaderComponent {
 
   constructor() {
     console.log('Hello SideMenuSliderComponent Component');
