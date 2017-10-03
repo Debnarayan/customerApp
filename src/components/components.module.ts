@@ -12,6 +12,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { FeaturedItemComponent } from './featured-item/featured-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ExpandableHeader } from './expandable-header/expandable-header';
+import { ViewAllItemsComponent } from './view-all-items/view-all-items.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { ExpandableHeader } from './expandable-header/expandable-header';
         MenuItemComponent,
     FeaturedItemComponent,
     ProductDetailsComponent,
-    ExpandableHeader
+    ExpandableHeader,
+    ViewAllItemsComponent
     ],
     imports: [IonicModule],
     exports: [
@@ -39,7 +41,8 @@ import { ExpandableHeader } from './expandable-header/expandable-header';
         MenuItemComponent,
     FeaturedItemComponent,
     ProductDetailsComponent,
-    ExpandableHeader
+    ExpandableHeader,
+    ViewAllItemsComponent
     ]
 })
 export class ComponentsModule {

@@ -1,0 +1,16 @@
+<ion-grid>
+    <ion-row>
+        <ion-col no-padding col-6 *ngFor="let product of Products">
+            <ion-card no-margin class="menu-item-card white-bg border-outside-light" (click)="presentProductDetails(product)">
+                <div class="circular-menu-item primary-light-bg">
+                    <img src="{{product.image_path}}/{{product.image_name}}"/>
+                </div>
+                <ion-card-content no-padding>
+                    <ion-card-title text-center class="text-sm">
+                        {{product.name}}
+                    </ion-card-title>
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>

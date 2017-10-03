@@ -22,6 +22,14 @@
 
 
 //---------------------------------------
+//for custom toast :: product-details
+//---------------------------------------
+.toast-at-bottom>.toast-wrapper.toast-bottom{
+  bottom: 73px;
+}
+
+
+//---------------------------------------
 // global css class
 //---------------------------------------
 
@@ -84,6 +92,10 @@ a{
   background: none;
 }
 
+.border-outside-light{
+  border:1px solid color($colors,light);
+}
+
 .border-left{
   border-left: 1px solid color($colors,light);
 }
@@ -94,6 +106,11 @@ a{
 .border-right{
   border-right: 1px solid color($colors,light);
 }
+
+.absolute{
+  position: absolute;
+}
+
 
 //-------------------------------------
 //header section
@@ -126,6 +143,9 @@ a{
 //---------------------------------------
 //background-colors
 //---------------------------------------
+.transparent-bg{
+  background: transparent;
+}
 .dark-bg{
   background: color($colors, primary-dark);
 }
@@ -142,6 +162,9 @@ a{
   background: color($colors, primary-light);
 }
 
+.primary-dark-bg{
+  background: color($colors, primary-dark);
+}
 
 /*
 ------------------------------------------------
@@ -159,10 +182,9 @@ text-size
   font-weight: bold;
 }
 
-.buttton{
+.no-decoration{
   text-transform: none;
 }
-
 
 //---------------------------------------
 //text-colors

@@ -7,10 +7,15 @@ app-menu-item {
     margin-top: 170px;
   }
 
-  ion-scroll>.scroll-content{
+  ion-scroll.category-item-container>.scroll-content{
     margin-top: 0;
     height: 160px;
     padding: 0 !important;
+    position: static;
+  }
+
+  .menu-item-width{
+    width:450px;
   }
 
   .circular-menu-item {

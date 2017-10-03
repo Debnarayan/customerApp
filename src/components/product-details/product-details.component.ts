@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Category, Product} from "../../interfaces/product.interface";
 
 @Component({
     selector: 'app-product-details',
@@ -6,15 +7,20 @@ import {Component, Input} from '@angular/core';
 })
 export class ProductDetailsComponent {
 
-    @Input('imageName') img: string;
+    @Input('product') item: Product;
+    @Output() changeQuantity: EventEmitter<Number>;
+
     viewMore: boolean = false;
     viewText: string = 'more';
 
-    text: string;
+    currency:string = '£';
+    // amount: number = 10;
+    quantity:number = 0;
 
     constructor() {
         console.log('Hello ProductDetailsComponent Component ');
-        this.text = 'Hello World';
+        // console.log(this.product.description);
+        this.changeQuantity = new EventEmitter<Number>();
     }
 
     viewMoreOrLess() {
@@ -26,7 +32,20 @@ export class ProductDetailsComponent {
             this.viewMore = false;
             this.viewText = 'more'
         }
+    }
 
+    addQuantity(q:number){
+        this.quantity = q+1;
+        // this.item.quantity = this.quantity;
+        this.changeQuantity.emit(this.quantity);
+    }
+
+    removeQuantity(q:number){
+        if(q>0){
+            this.quantity = q-1;
+            // this.item.quantity = this.quantity;
+            this.changeQuantity.emit(this.quantity);
+        }
     }
 
 }

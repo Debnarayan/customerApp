@@ -1,18 +1,31 @@
-<div class="prod-img-container">
-    <img class="product-img" src="./assets/banner/menu-item/{{img}}">
-</div>
-<ion-list padding>
-    <div>
-        <ion-label class="text-content" [attr.text-wrap]="viewMore ? '' : null">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged. It was popularised in
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum.
+<!--<div class="prod-img-container">-->
+    <!--<img class="product-img" src="./assets/banner/menu-item/{{img}}">-->
+<!--</div>-->
+<ion-list>
+    <div padding class="light-bg">
+        <ion-label no-margin class="text-content" [attr.text-wrap]="viewMore ? '' : null">
+            {{item.description}}
         </ion-label>
-        <button ion-button clear (click)="viewMoreOrLess()" color="secondary">{{viewText}}</button>
+        <button no-padding ion-button small clear (click)="viewMoreOrLess()" color="secondary" class="strong no-decoration">{{viewText}}</button>
     </div>
+
+    <ion-item padding-horizontal class="light-bg">
+        <ion-label>
+            Price
+        </ion-label>
+        <span item-right class="text-xl">
+            {{currency}}{{item?.price}}
+        </span>
+    </ion-item>
+
+    <ion-item padding-horizontal class="light-bg">
+        <ion-label>
+            Quantity
+        </ion-label>
+        <span item-right float-end class="text-xl">
+            <ion-icon class="secondary" name="add-circle" (click)="addQuantity(quantity)"></ion-icon>
+            <span padding-vertical>{{quantity}}</span>
+            <ion-icon class="secondary" name="remove-circle" (click)="removeQuantity(quantity)"></ion-icon>
+        </span>
+    </ion-item>
 </ion-list>

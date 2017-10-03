@@ -22,6 +22,7 @@ import {AuthAppProvider} from "../providers/auth/auth-app.service";
 import {ConnectivityService} from '../providers/connectivity/connectivity.service';
 import {AlertService} from '../providers/alert/alert.service';
 import {LoadingService} from '../providers/loading/loading.service';
+import {ToastService} from "../providers/toast/toast.service";
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import {LoadingService} from '../providers/loading/loading.service';
         AppVersion,
         ConnectivityService,
         AlertService,
-        LoadingService
+        LoadingService,
+        ToastService
     ]
 })
 export class AppModule {

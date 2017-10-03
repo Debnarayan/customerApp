@@ -1,42 +1,18 @@
-<ion-grid class="container1">
+<ion-grid class="container1" *ngFor="let category of Categories">
     <ion-item-divider color="light" class="text-xl">
-        Drinks
-        <button ion-button item-end clear color="secondary">See All</button>
+        {{category.name}}
+        <button ion-button item-end clear color="secondary" class="no-decoration" (click)="goToViewAllItems(category)">See All</button>
     </ion-item-divider>
-    <ion-scroll no-padding scrollX="true">
-        <ion-row style="width:450px">
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg" (click)="presentProductDetails()">
+    <ion-scroll no-padding scrollX="true" class="category-item-container">
+        <ion-row class="menu-item-width">
+            <ion-col class="light-bg" *ngFor="let product of Products">
+                <ion-card no-margin class="menu-item-card light-bg" (click)="presentProductDetails(product)">
                     <div class="circular-menu-item primary-light-bg">
-                        <img src="./assets/banner/menu-item/food1.png"/>
+                        <img src="{{product.image_path}}/{{product.image_name}}"/>
                     </div>
                     <ion-card-content no-padding>
                         <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
-                        </ion-card-title>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg">
-                    <div class="circular-menu-item primary-light-bg">
-                    <img src="./assets/banner/menu-item/food2.png"/>
-                    </div>
-                    <ion-card-content no-padding>
-                        <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
-                        </ion-card-title>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg">
-                    <div class="circular-menu-item primary-light-bg">
-                    <img src="./assets/banner/menu-item/food3.png"/>
-                    </div>
-                    <ion-card-content no-padding>
-                        <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
+                            {{product.name}}
                         </ion-card-title>
                     </ion-card-content>
                 </ion-card>
@@ -45,49 +21,25 @@
     </ion-scroll>
 </ion-grid>
 
-<ion-grid class="container2">
-    <ion-item-divider color="light" class="text-xl">
-        Drinks
-        <button ion-button item-end clear color="secondary">See All</button>
-    </ion-item-divider>
-    <ion-scroll no-padding scrollX="true">
-        <ion-row style="width:450px">
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg">
-                    <div class="circular-menu-item primary-light-bg">
-                        <img src="./assets/banner/menu-item/food1.png"/>
-                    </div>
-                    <ion-card-content no-padding>
-                        <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
-                        </ion-card-title>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg">
-                    <div class="circular-menu-item primary-light-bg">
-                        <img src="./assets/banner/menu-item/food2.png"/>
-                    </div>
-                    <ion-card-content no-padding>
-                        <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
-                        </ion-card-title>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-            <ion-col class="light-bg">
-                <ion-card no-margin class="menu-item-card light-bg">
-                    <div class="circular-menu-item primary-light-bg">
-                        <img src="./assets/banner/menu-item/food3.png"/>
-                    </div>
-                    <ion-card-content no-padding>
-                        <ion-card-title text-center class="text-sm">
-                            Nine Inch Nails Live
-                        </ion-card-title>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-scroll>
-</ion-grid>
+<!--<ion-grid class="container2">-->
+    <!--<ion-item-divider color="light" class="text-xl">-->
+        <!--Drinks-->
+        <!--<button ion-button item-end clear color="secondary" class="no-decoration">See All</button>-->
+    <!--</ion-item-divider>-->
+    <!--<ion-scroll no-padding scrollX="true">-->
+        <!--<ion-row class="menu-item-width">-->
+            <!--<ion-col class="light-bg" *ngFor="let product of Products">-->
+                <!--<ion-card no-margin class="menu-item-card light-bg" (click)="presentProductDetails(product)">-->
+                    <!--<div class="circular-menu-item primary-light-bg">-->
+                        <!--<img src="{{product.image_path}}/{{product.image_name}}"/>-->
+                    <!--</div>-->
+                    <!--<ion-card-content no-padding>-->
+                        <!--<ion-card-title text-center class="text-sm">-->
+                            <!--{{product.name}}-->
+                        <!--</ion-card-title>-->
+                    <!--</ion-card-content>-->
+                <!--</ion-card>-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+    <!--</ion-scroll>-->
+<!--</ion-grid>-->

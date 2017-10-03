@@ -8,6 +8,8 @@ import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
 })
 export class MenuItemPage {
 
+    menuTypeTab: string = 'all_menu';
+
     isiOS:boolean =false;
   constructor(private navCtrl: NavController,
               private navParams: NavParams,

@@ -1,25 +1,48 @@
-<ion-header>
-    <!--<expandable-header [scrollArea]="mycontent" headerHeight="300">-->
-        <!--<div style="position: relative; display: inline-block;width: -webkit-fill-available">-->
-            <!--&lt;!&ndash;<ion-buttons left>&ndash;&gt;-->
-            <!--<button color="white" style="position: absolute" ion-button clear icon-only (click)="onDismiss()">-->
-                <!--<ion-icon name="close"></ion-icon>-->
-            <!--</button>-->
-            <!--&lt;!&ndash;</ion-buttons>&ndash;&gt;-->
-            <!--<img style="width: -webkit-fill-available;" src="./assets/banner/menu-item/{{imgName}}">-->
-            <!--<ion-navbar style="position: absolute;bottom: 25px;left: 16px;" class="text-lg">{{itemName}}</ion-navbar>-->
-        <!--</div>-->
-    <!--</expandable-header>-->
-    <ion-navbar color="primary">
-        <button color="white" ion-button clear icon-only (click)="onDismiss()">
-        <ion-icon name="close"></ion-icon>
-        </button>
-        <ion-title>{{itemName}}</ion-title>
-    </ion-navbar>
+<ion-header [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
+    <div class="primary-dark-bg product-header-container">
+        <ion-buttons left *ngIf="hideheader">
+            <button color="white" class="absolute" ion-button clear icon-only (click)="onDismiss()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+        <div text-center>
+            <img class="product-header-img" alt="No Image" src="{{productDetails?.image_path}}/{{productDetails?.image_name}}">
+        </div>
+
+        <ion-navbar padding-horizontal class="no-navbar light text-lg strong product-title">
+            <ion-buttons left *ngIf="showheader">
+                <button color="white" ion-button clear icon-only (click)="onDismiss()">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+            </ion-buttons>
+            {{productDetails.name}}
+        </ion-navbar>
+    </div>
 </ion-header>
 
 
 <!--<ion-content padding fullscreen #mycontent>-->
 <ion-content class="primary-light-bg">
-    <app-product-details [imageName]="imgName"></app-product-details>
+    <ion-fab bottom right>
+        <button ion-button round large class="no-decoration secondary" (click)="addToCart(orderItem)">Add Item</button>
+    </ion-fab>
+    <app-product-details [product]="productDetails" (changeQuantity)="quantityOnChange($event)"></app-product-details>
 </ion-content>
+
+
+<ion-footer class="primary-dark-bg">
+    <ion-item no-lines class="light transparent-bg">
+        <div>
+            <span class="strong new-line">Select Store</span>
+            <button no-padding no-margin ion-button color="secondary" class="no-decoration" clear>
+                {{storeName}}
+                <ion-icon padding-left name="ios-arrow-down"></ion-icon>
+            </button>
+        </div>
+
+        <button color="white" ion-button item-right clear large icon-only>
+            <ion-icon no-padding name="md-clipboard"></ion-icon>
+            <ion-badge *ngIf="orderItem?.quantity>0" class="transparent-bg secondary absolute">{{orderItem?.quantity}}</ion-badge>
+        </button>
+    </ion-item>
+</ion-footer>

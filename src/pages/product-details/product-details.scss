@@ -1,3 +1,32 @@
 page-product-details {
+  .product-header-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .product-header-img{
+    height: 240px;
+  }
+
+  .product-title{
+    //position: absolute;
+    //bottom: 0px;
+    //left: 16px;
+  }
+
+  .scroll-content{
+    top:-240px !important;
+    padding-top: 244px !important;
+  }
+  .hide-header{
+    transition : top 0.25s ease;
+    top: -240px;
+  }
+  .show-header{
+    transition : top 0.25s ease;
+    top: 0px;
+  }
+
 
 }
