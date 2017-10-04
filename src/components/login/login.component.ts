@@ -3,12 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginForm} from "../../interfaces/login-form.interface";
 import {AuthUserProvider} from "../../providers/auth/auth-user.service";
 
-/**
- * Generated class for the LoginComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
     selector: 'app-login',
     templateUrl: 'login.component.html'

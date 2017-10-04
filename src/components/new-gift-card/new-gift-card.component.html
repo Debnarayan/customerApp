@@ -1,15 +1,15 @@
-<ion-item no-lines margin-top>
+<ion-item no-lines margin-top (click)="presentArtwork()">
     <ion-label>
         Artwork
     </ion-label>
     <ion-thumbnail item-end>
-        <img class="artwork-thumbnail" src="./assets/banner/img0.jpg">
+        <img class="artwork-thumbnail" [src]="selectedArtwork ? selectedArtwork?.image_path+'/'+selectedArtwork?.image_name : './assets/logo/no-image.jpg'">
     </ion-thumbnail>
     <ion-icon item-right color="primary-light" name="ios-arrow-forward-outline"></ion-icon>
 </ion-item>
 
 <ion-item margin-vertical no-lines (click)="presentAddRecipient()">
-    <ion-label class="text-xs">
+    <ion-label class="text-sm" text-wrap>
         Add Recipient & Message
     </ion-label>
     <ion-label>{{recipient}}</ion-label>

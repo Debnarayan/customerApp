@@ -20,6 +20,8 @@ export class LoginPage {
   checkUserLoginByEmailAndPassword(ev){
     console.log(ev);
     if(ev.status == 'fail'){
+        //apply toast using service call
+        // this.toast.presentToast()
         let toast = this.toastCtrl.create({
             message: ev.response,
             duration: 3000

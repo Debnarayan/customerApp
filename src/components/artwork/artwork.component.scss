@@ -1,0 +1,16 @@
+app-artwork {
+  .selected-artwork-container{
+    height:180px;
+    width: 100%;
+  }
+
+  .full-height-width{
+    height:100%;
+    width: 100%;
+  }
+
+  ion-scroll>.scroll-content{
+    position: static;
+    height: 116px;
+  }
+}

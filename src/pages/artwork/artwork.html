@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+      <ion-buttons left>
+          <button ion-button clear (click)="onDismiss()">Cancel</button>
+      </ion-buttons>
+    <ion-title class="" text-center>Artwork</ion-title>
+      <ion-buttons end>
+          <button ion-button clear (click)="onSelect()">Next</button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="primary-light-bg">
+    <app-artwork (artworkResponse)="artworkCallbackOnSelect($event)"></app-artwork>
+</ion-content>

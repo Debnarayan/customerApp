@@ -1,0 +1,54 @@
+<div class="selected-artwork-container">
+    <img [src]="selectedArtwork ? selectedArtwork?.image_path +'/'+ selectedArtwork?.image_name : './assets/logo/no-image.jpg'" class="full-height-width">
+</div>
+<ion-list>
+    <div *ngFor="let category of ArtworkCategories">
+
+    <ion-item-divider margin-top class="white-bg secondary strong">
+        {{category.name}}
+    </ion-item-divider>
+    <ion-scroll scrollX="true" class="white-bg">
+        <div style="overflow: auto;display: inline-flex;">
+            <div *ngFor="let artwork of Artworks|slice:0:7">
+                <ion-card *ngIf="category.id == artwork.category_id" no-margin (click)="selectArtwork(artwork)" style="width: 144px;margin: 8px;position: relative">
+                    <ion-icon *ngIf="selectedArtwork.id == artwork.id"  color="primary-blue" style="position: absolute;font-size: 2.2em;" name="checkmark-circle"></ion-icon>
+                    <img style="height: 100px" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">
+                </ion-card>
+            </div>
+        </div>
+    </ion-scroll>
+
+    <!--<ion-item-divider margin-top class="white-bg secondary strong">-->
+        <!--Heroes-->
+    <!--</ion-item-divider>-->
+    <!--<ion-scroll scrollX="true" class="white-bg">-->
+        <!--<ion-row style="width: 145%;">-->
+            <!--<ion-col col-4 *ngFor="let artwork of Artworks| slice:4:7" class="padding-8">-->
+                <!--<ion-card no-margin style="width: 100%">-->
+                    <!--<img style="height: 100px" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">-->
+                <!--</ion-card>-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+    <!--</ion-scroll>-->
+
+    <!--<ion-item-divider margin-top class="white-bg secondary strong">-->
+        <!--Cartoon-->
+    <!--</ion-item-divider>-->
+    <!--<ion-scroll scrollX="true" class="white-bg">-->
+        <!--<ion-row style="width: 145%;">-->
+            <!--<ion-col col-4 *ngFor="let artwork of Artworks| slice:5:8" class="padding-8">-->
+                <!--<ion-card no-margin style="width: 100%">-->
+                    <!--<img style="height: 100px" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">-->
+                <!--</ion-card>-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+    <!--</ion-scroll>-->
+
+    </div>
+    <!--<ion-list-header class="primary-light-bg">-->
+        <!--Birthday-->
+    <!--</ion-list-header>-->
+    <!--<ion-item *ngFor="let artwork of Artworks">-->
+        <!--<img [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">-->
+    <!--</ion-item>-->
+</ion-list>
