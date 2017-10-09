@@ -1,29 +1,15 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Category} from "../../interfaces/product.interface";
-import {ModalController, NavController, NavParams, ViewController} from "ionic-angular";
-import {timeout} from "rxjs/operator/timeout";
+
 
 @Component({
-    selector: 'app-artwork',
-    templateUrl: 'artwork.component.html'
+  selector: 'app-all-artworks',
+  templateUrl: 'view-all-artworks.component.html'
 })
-export class ArtworkComponent{
-
-    @Output() artworkResponse: EventEmitter<Object>;
-
-    ArtworkCategories = [
-        {
-            id: 1,
-            name: 'Birthday'
-        },
-        {
-            id: 2,
-            name: 'Thank You'
-        },
-        {
-            id: 3,
-            name: 'Cartoon'
-        }];
+export class ViewAllArtworksComponent {
+    @Input('selectedCategory') selectedCategory: Category;
+    @Output() allArtworkResponse: EventEmitter<Object>;
+    selectedArtwork:Object;
 
     Artworks = [
         {
@@ -75,30 +61,16 @@ export class ArtworkComponent{
             image_name: 'art7.jpg',
             image_path: './assets/banner/artwork'
         }];
-
-    selectedArtwork:Object;
-
-    constructor(private navParams: NavParams,
-                private modalCtrl:ModalController) {
-        console.log('Hello ArtworkComponent Component');
-        this.artworkResponse = new EventEmitter<Object>();
-        this.selectedArtwork = navParams.get('artwork');
-    }
+  constructor() {
+    console.log('Hello ViewAllArtworksComponent Component');
+      this.allArtworkResponse = new EventEmitter<Object>();
+      this.selectedArtwork = {};
+  }
 
     selectArtwork(artwork){
         this.selectedArtwork = artwork;
-        this.artworkResponse.emit(this.selectedArtwork);
+        this.allArtworkResponse.emit(this.selectedArtwork);
     }
 
-    goToViewAllArtworks(artworkCategory: Category) {
-        let allArtworkModal = this.modalCtrl.create('ViewAllArtworksPage', {category: artworkCategory});
-        allArtworkModal.present();
-
-        allArtworkModal.onDidDismiss(data => {
-            console.log(data);
-            this.selectedArtwork = data;
-            this.artworkResponse.emit(this.selectedArtwork);
-        });
-    }
 
 }

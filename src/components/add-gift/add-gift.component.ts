@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import {ModalController} from "ionic-angular";
 
-/**
- * Generated class for the AddGiftComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'app-add-gift',
   templateUrl: 'add-gift.component.html'

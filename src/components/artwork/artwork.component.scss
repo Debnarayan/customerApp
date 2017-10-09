@@ -9,8 +9,29 @@ app-artwork {
     width: 100%;
   }
 
-  ion-scroll>.scroll-content{
+  .artwork-item-scroller>.scroll-content{
     position: static;
     height: 116px;
+    background: color($colors,white);
+  }
+
+  .artwork-item-container{
+    overflow: auto;
+    display: inline-flex;
+  }
+
+  .artwork-card{
+    width: 144px;
+    margin: 8px;
+    position: relative;
+  }
+
+  .artwork-check-icon{
+    position: absolute;
+    font-size: 2.2em;
+  }
+
+  .artwork-img{
+    height: 100px;
   }
 }

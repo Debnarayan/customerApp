@@ -3,16 +3,16 @@
 </div>
 <ion-list>
     <div *ngFor="let category of ArtworkCategories">
-
     <ion-item-divider margin-top class="white-bg secondary strong">
-        {{category.name}}
+        {{category?.name}}
+        <button ion-button item-end clear color="secondary" class="no-decoration" (click)="goToViewAllArtworks(category)">See All</button>
     </ion-item-divider>
-    <ion-scroll scrollX="true" class="white-bg">
-        <div style="overflow: auto;display: inline-flex;">
+    <ion-scroll scrollX="true" class="artwork-item-scroller">
+        <div class="artwork-item-container">
             <div *ngFor="let artwork of Artworks|slice:0:7">
-                <ion-card *ngIf="category.id == artwork.category_id" no-margin (click)="selectArtwork(artwork)" style="width: 144px;margin: 8px;position: relative">
-                    <ion-icon *ngIf="selectedArtwork.id == artwork.id"  color="primary-blue" style="position: absolute;font-size: 2.2em;" name="checkmark-circle"></ion-icon>
-                    <img style="height: 100px" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">
+                <ion-card *ngIf="category?.id == artwork?.category_id" no-margin (click)="selectArtwork(artwork)" class="artwork-card">
+                    <ion-icon *ngIf="selectedArtwork?.id == artwork?.id" name="checkmark-circle" color="primary-blue" class="artwork-check-icon"></ion-icon>
+                    <img class="artwork-img" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">
                 </ion-card>
             </div>
         </div>

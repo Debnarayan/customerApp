@@ -93,7 +93,7 @@ a{
 }
 
 .border-outside-light{
-  border:1px solid color($colors,light);
+  border:1px solid color($colors,primary-light);
 }
 
 .border-left{
@@ -124,7 +124,9 @@ a{
 //------------------------------------
 //page-container
 //------------------------------------
-
+.align-items-center{
+  align-items: center;
+}
 
 
 
@@ -133,6 +135,10 @@ a{
 //---------------------------------------
 .padding-8{
   padding: 8px;
+}
+
+.padding-horizontal-10{
+  padding: 0 10px;
 }
 
 .padding-left-none{

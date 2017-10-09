@@ -1,0 +1,13 @@
+app-rewards {
+  .reward-progress{
+    //width: 25px !important;
+    //height: 25px !important;
+    margin-top: -3%;
+    display: inline-block;
+    position: absolute;
+    path{
+      stroke: color($colors,secondary) !important;
+    }
+  }
+
+}

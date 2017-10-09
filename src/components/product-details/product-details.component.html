@@ -1,15 +1,15 @@
 <!--<div class="prod-img-container">-->
     <!--<img class="product-img" src="./assets/banner/menu-item/{{img}}">-->
 <!--</div>-->
-<ion-list>
-    <div padding class="light-bg">
+<ion-list class="margin-bottom-73">
+    <div padding class="white-bg">
         <ion-label no-margin class="text-content" [attr.text-wrap]="viewMore ? '' : null">
             {{item.description}}
         </ion-label>
         <button no-padding ion-button small clear (click)="viewMoreOrLess()" color="secondary" class="strong no-decoration">{{viewText}}</button>
     </div>
 
-    <ion-item padding-horizontal class="light-bg">
+    <ion-item padding-horizontal class="white-bg">
         <ion-label>
             Price
         </ion-label>
@@ -18,7 +18,7 @@
         </span>
     </ion-item>
 
-    <ion-item padding-horizontal class="light-bg">
+    <ion-item padding-horizontal class="white-bg">
         <ion-label>
             Quantity
         </ion-label>

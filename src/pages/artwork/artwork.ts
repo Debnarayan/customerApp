@@ -15,10 +15,12 @@ export class ArtworkPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArtworkPage');
+      this.selectedArtwork = this.navParams.get('artwork');
   }
 
     artworkCallbackOnSelect(ev){
       this.selectedArtwork = ev;
+      console.log(ev);
     }
 
     onDismiss(){

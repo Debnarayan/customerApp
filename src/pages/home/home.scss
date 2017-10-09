@@ -1,15 +1,27 @@
 page-home {
+  .toolbar-ios {
+    margin-top: 41px;
+  }
+  .content-ios {
+    margin-top: 123px;
+  }
 
-  .custom-slide{
+  .toolbar-md {
+    margin-top: 55px;
+  }
+  .content-md {
+    margin-top: 144px;
+  }
+  .custom-slide {
     height: 200px;
   }
 
-  .custom-banner{
+  .custom-banner {
     height: 200px !important;
     width: 100%;
   }
 
-  .no-margin-at-top>.scroll-content,.no-margin-at-top>.fixed-content{
+  .no-margin-at-top > .scroll-content, .no-margin-at-top > .fixed-content {
     margin-top: 0 !important;
   }
 }

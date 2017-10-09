@@ -40,7 +40,7 @@ export class TermsAndConditionPage {
   }
 
     acceptTerms(){
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('TabsPage');
   }
 
 }

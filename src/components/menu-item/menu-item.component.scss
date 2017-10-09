@@ -7,15 +7,17 @@ app-menu-item {
     margin-top: 170px;
   }
 
-  ion-scroll.category-item-container>.scroll-content{
+  .category-item-scroller>.scroll-content{
     margin-top: 0;
     height: 160px;
     padding: 0 !important;
     position: static;
+    background: color($colors,white);
   }
 
   .menu-item-width{
-    width:450px;
+    overflow: auto;
+    display: inline-flex;
   }
 
   .circular-menu-item {
@@ -35,7 +37,7 @@ app-menu-item {
   }
 
   .menu-item-card{
-    width: 100%;
+    width: 144px;
     box-shadow: none;
   }
 }

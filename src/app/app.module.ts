@@ -12,17 +12,17 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {EmailComposer} from "@ionic-native/email-composer";
 import {Geolocation} from '@ionic-native/geolocation';
 import {Network} from '@ionic-native/network';
-
+import {HttpModule} from "@angular/http";
+import {AppVersion} from "@ionic-native/app-version";
 
 import {ComponentsModule} from "../components/components.module";
 import {AuthUserProvider} from '../providers/auth/auth-user.service';
-import {HttpModule} from "@angular/http";
-import {AppVersion} from "@ionic-native/app-version";
 import {AuthAppProvider} from "../providers/auth/auth-app.service";
 import {ConnectivityService} from '../providers/connectivity/connectivity.service';
 import {AlertService} from '../providers/alert/alert.service';
 import {LoadingService} from '../providers/loading/loading.service';
 import {ToastService} from "../providers/toast/toast.service";
+import {Contacts} from "@ionic-native/contacts";
 
 @NgModule({
     declarations: [
@@ -47,6 +47,7 @@ import {ToastService} from "../providers/toast/toast.service";
         InAppBrowser,
         EmailComposer,
         Geolocation,
+        Contacts,
         AuthUserProvider,
         AuthAppProvider,
         AppVersion,

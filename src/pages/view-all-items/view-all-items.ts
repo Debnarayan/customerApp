@@ -9,8 +9,7 @@ import {Category} from "../../interfaces/product.interface";
 })
 export class ViewAllItemsPage {
     category:Category;
-  constructor(private navCtrl: NavController,
-              private navParams: NavParams) {
+  constructor(private navParams: NavParams) {
       this.category = navParams.get('category');
       console.log(this.category);
   }

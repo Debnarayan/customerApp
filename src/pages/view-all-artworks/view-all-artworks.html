@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+      <ion-buttons left>
+          <button ion-button clear (click)="onDismiss()">Cancel</button>
+      </ion-buttons>
+      <ion-title text-center>{{category.name}} Artworks</ion-title>
+      <ion-buttons end>
+          <button ion-button clear (click)="onSelect()">Next</button>
+      </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="primary-light-bg">
+    <app-all-artworks [selectedCategory]="category" (allArtworkResponse)="allArtworkCallbackOnSelect($event)"></app-all-artworks>
+</ion-content>

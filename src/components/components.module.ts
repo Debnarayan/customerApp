@@ -14,6 +14,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ExpandableHeader } from './expandable-header/expandable-header';
 import { ViewAllItemsComponent } from './view-all-items/view-all-items.component';
 import { ArtworkComponent } from './artwork/artwork.component';
+import { ViewAllArtworksComponent } from './view-all-artworks/view-all-artworks.component';
+import {PipesModule} from "../pipes/pipes.module";
+import { RewardsComponent } from './rewards/rewards.component';
+import {RoundProgressModule} from "angular-svg-round-progressbar";
 
 @NgModule({
     declarations: [
@@ -29,9 +33,11 @@ import { ArtworkComponent } from './artwork/artwork.component';
     ProductDetailsComponent,
     ExpandableHeader,
     ViewAllItemsComponent,
-    ArtworkComponent
+    ArtworkComponent,
+    ViewAllArtworksComponent,
+    RewardsComponent
     ],
-    imports: [IonicModule],
+    imports: [IonicModule,PipesModule,RoundProgressModule],
     exports: [
         LoginComponent,
         RegisterComponent,
@@ -45,7 +51,9 @@ import { ArtworkComponent } from './artwork/artwork.component';
     ProductDetailsComponent,
     ExpandableHeader,
     ViewAllItemsComponent,
-    ArtworkComponent
+    ArtworkComponent,
+    ViewAllArtworksComponent,
+    RewardsComponent
     ]
 })
 export class ComponentsModule {

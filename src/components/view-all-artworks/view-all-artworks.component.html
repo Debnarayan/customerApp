@@ -1,0 +1,10 @@
+<ion-grid>
+    <ion-row>
+        <ion-col no-padding col-6 *ngFor="let artwork of Artworks| filterByCategory:selectedCategory">
+            <ion-card no-margin class="full-width border-outside-light" (click)="selectArtwork(artwork)">
+                    <ion-icon *ngIf="selectedArtwork.id == artwork.id" name="checkmark-circle" color="primary-blue" class="artwork-check-icon"></ion-icon>
+                    <img class="artwork-img" [src]="artwork?.image_name ? artwork?.image_path +'/'+ artwork?.image_name : './assets/logo/no-image.jpg'">
+            </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-grid>

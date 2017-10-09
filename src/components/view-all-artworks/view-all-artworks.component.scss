@@ -1,0 +1,6 @@
+app-all-artworks {
+  @extend app-artwork;
+  .full-width{
+    width:100%;
+  }
+}

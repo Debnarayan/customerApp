@@ -1,0 +1,17 @@
+
+<div text-center>
+    <span class="secondary same-line text-xxl">{{reward}}</span>
+    <span text-center style="display: inline-block">
+    <round-progress class="reward-progress" [radius]="16" [stroke]="2" [duration]="2000" [current]="reward" [max]="max"></round-progress>
+    <ion-icon class="secondary padding-horizontal-10" name="heart"></ion-icon>
+    </span>
+</div>
+<div class="sub-tab-container">
+<ion-grid class="align-items-center">
+    <ion-row>
+        <ion-col padding ion-button clear col-auto class="text-xs secondary">MESSAGES</ion-col>
+        <ion-col padding ion-button clear col-auto class="text-xs secondary">HISTORY</ion-col>
+        <ion-col padding ion-button clear col-auto class="text-xs secondary">SETTINGS</ion-col>
+    </ion-row>
+</ion-grid>
+</div>

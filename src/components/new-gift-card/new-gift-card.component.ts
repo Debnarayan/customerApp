@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ModalController} from "ionic-angular";
+import {ModalController, NavParams} from "ionic-angular";
 
 @Component({
   selector: 'app-new-gift-card',
@@ -12,8 +12,10 @@ export class NewGiftCardComponent {
     recipient:string = '';
     selectedArtwork:Object;
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController,
+              private navParams: NavParams) {
     console.log('Hello NewGiftCardComponent Component');
+    console.log(navParams.get('artwork'));
   }
 
     selectAmount(){
@@ -21,10 +23,9 @@ export class NewGiftCardComponent {
     }
 
     presentArtwork(){
-        let artworkModal = this.modalCtrl.create('ArtworkPage');
+        let artworkModal = this.modalCtrl.create('ArtworkPage',{artwork: this.selectedArtwork});
         artworkModal.present();
         artworkModal.onDidDismiss(data => {
-            console.log(data);
             this.selectedArtwork = data;
         });
     }
