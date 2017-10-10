@@ -1,0 +1,10 @@
+<ion-list>
+    <ion-item *ngFor="let message of Messages">
+        <ion-thumbnail item-start>
+            <img [src]="message?.image_name ? message?.image_path + '/' + message?.image_name : './assets/logo/no-image.jpg'">
+        </ion-thumbnail>
+        <h2>{{message.title}}</h2>
+        <p>{{message.body}}</p>
+        <button ion-button clear item-end (click)="viewMessage(message)">View</button>
+    </ion-item>
+</ion-list>

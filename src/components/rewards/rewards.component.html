@@ -9,7 +9,10 @@
 <div class="sub-tab-container">
 <ion-grid class="align-items-center">
     <ion-row>
-        <ion-col padding ion-button clear col-auto class="text-xs secondary">MESSAGES</ion-col>
+        <ion-col padding ion-button clear col-auto class="text-xs secondary" (click)="presentMessages()">
+            MESSAGES
+            <span margin-bottom item-end color="secondary">&#9679;</span>
+        </ion-col>
         <ion-col padding ion-button clear col-auto class="text-xs secondary">HISTORY</ion-col>
         <ion-col padding ion-button clear col-auto class="text-xs secondary">SETTINGS</ion-col>
     </ion-row>

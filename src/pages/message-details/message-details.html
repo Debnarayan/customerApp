@@ -1,0 +1,32 @@
+<!--
+  Generated template for the MessageDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Message</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only clear (click)="onDismiss()">
+              <ion-icon name="close"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <img [src]="message.image_name ? message?.image_path + '/' + message?.image_name : './assets/logo/no-image.jpg'"/>
+        <ion-card-content>
+            <ion-card-title class="text-lg strong">
+                {{message?.title}}
+            </ion-card-title>
+            <p no-padding>
+                {{message?.body}}
+            </p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

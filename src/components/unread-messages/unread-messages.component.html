@@ -1,0 +1,15 @@
+<ion-card *ngFor="let message of Messages">
+    <img [src]="message.image_name ? message?.image_path + '/' + message?.image_name : './assets/logo/no-image.jpg'"/>
+    <ion-card-content>
+        <ion-card-title class="text-lg strong">
+            {{message?.title}}
+        </ion-card-title>
+        <ion-item no-padding>
+            {{message?.body}}
+        </ion-item>
+        <ion-buttons end>
+            <button ion-button small outline (click)="presentMessages()">MESSAGES</button>
+            <button ion-button small outline (click)="viewMessage(message)">DETAILS</button>
+        </ion-buttons>
+    </ion-card-content>
+</ion-card>

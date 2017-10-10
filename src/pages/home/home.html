@@ -14,32 +14,34 @@
 </ion-toolbar>
 
 
-<ion-content class="dark-bg no-margin-at-top">
-    <ion-slides no-padding class="custom-slide" pager="true" loop="true" autoplay="3000">
-        <ion-slide>
-            <img class="custom-banner" src="./assets/banner/img0.jpg">
-        </ion-slide>
-        <ion-slide>
-            <img class="custom-banner" src="./assets/banner/img1.jpg">
-        </ion-slide>
-        <ion-slide>
-            <img class="custom-banner" src="./assets/banner/img2.jpg">
-        </ion-slide>
-        <ion-slide>
-            <img class="custom-banner" src="./assets/banner/img3.jpg">
-        </ion-slide>
-    </ion-slides>
-    <div padding>
-        <h2 color="secondary" class="strong secondary" text-center>Our Coffee</h2>
-        <p class="primary-light" text-center>
-            Since 1971, it always has been and will always be about quality. We’re passionate about ethically sourcing
-            only the finest Arabica beans and roasting them with great care. At Starbucks, our passion for coffee is
-            rivaled only by our love of sharing it.
-        </p>
-    </div>
+<ion-content class="primary-light-bg no-margin-at-top">
+        <app-unread-messages></app-unread-messages>
+        <app-promotion></app-promotion>
+    <!--<ion-slides no-padding class="custom-slide" pager="true" loop="true" autoplay="3000">-->
+        <!--<ion-slide>-->
+            <!--<img class="custom-banner" src="./assets/banner/img0.jpg">-->
+        <!--</ion-slide>-->
+        <!--<ion-slide>-->
+            <!--<img class="custom-banner" src="./assets/banner/img1.jpg">-->
+        <!--</ion-slide>-->
+        <!--<ion-slide>-->
+            <!--<img class="custom-banner" src="./assets/banner/img2.jpg">-->
+        <!--</ion-slide>-->
+        <!--<ion-slide>-->
+            <!--<img class="custom-banner" src="./assets/banner/img3.jpg">-->
+        <!--</ion-slide>-->
+    <!--</ion-slides>-->
+    <!--<div padding>-->
+        <!--<h2 color="secondary" class="strong secondary" text-center>Our Coffee</h2>-->
+        <!--<p class="primary-light" text-center>-->
+            <!--Since 1971, it always has been and will always be about quality. We’re passionate about ethically sourcing-->
+            <!--only the finest Arabica beans and roasting them with great care. At Starbucks, our passion for coffee is-->
+            <!--rivaled only by our love of sharing it.-->
+        <!--</p>-->
+    <!--</div>-->
 </ion-content>
 
-<ion-footer>
+<ion-footer class="primary-dark-bg">
     <ion-grid>
         <ion-row>
             <ion-col ion-button clear color="secondary" (click)="goToRegisterPage()">REGISTER</ion-col>

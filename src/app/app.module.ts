@@ -14,6 +14,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {Network} from '@ionic-native/network';
 import {HttpModule} from "@angular/http";
 import {AppVersion} from "@ionic-native/app-version";
+import {Contacts} from "@ionic-native/contacts";
 
 import {ComponentsModule} from "../components/components.module";
 import {AuthUserProvider} from '../providers/auth/auth-user.service';
@@ -22,7 +23,8 @@ import {ConnectivityService} from '../providers/connectivity/connectivity.servic
 import {AlertService} from '../providers/alert/alert.service';
 import {LoadingService} from '../providers/loading/loading.service';
 import {ToastService} from "../providers/toast/toast.service";
-import {Contacts} from "@ionic-native/contacts";
+import {MessagesMockupService} from '../services/mocks/messages-mockup/messages-mockup.service';
+import {GoogleMaps} from "@ionic-native/google-maps";
 
 @NgModule({
     declarations: [
@@ -43,18 +45,23 @@ import {Contacts} from "@ionic-native/contacts";
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
+        AppVersion,
         Network,
         InAppBrowser,
         EmailComposer,
         Geolocation,
         Contacts,
+        GoogleMaps,
+
         AuthUserProvider,
         AuthAppProvider,
-        AppVersion,
+
         ConnectivityService,
         AlertService,
         LoadingService,
-        ToastService
+        ToastService,
+
+        MessagesMockupService
     ]
 })
 export class AppModule {
