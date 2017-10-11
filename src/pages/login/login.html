@@ -6,10 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-navbar color="primary">
+        <!--<button ion-button menuToggle>-->
+        <!--<ion-icon name="menu"></ion-icon>-->
+        <!--</button>-->
+        <button ion-button clear icon-only color="light" (click)="onDismiss()">
+            <ion-icon name="ios-arrow-down"></ion-icon>
+        </button>
     <ion-title>Login</ion-title>
   </ion-navbar>
 

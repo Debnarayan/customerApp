@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import
 {
     GoogleMap,
@@ -16,15 +16,33 @@ import
 export class StoresPage {
     map: GoogleMap;
     mapElement: HTMLElement;
-
+    tabBarElement: any;
     constructor(private googleMaps: GoogleMaps,
-                public navCtrl: NavController,
-                public navParams: NavParams) {
+                private viewCtrl: ViewController,
+                private navCtrl: NavController) {
+        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     }
+
+    ionViewWillEnter() {
+        this.tabBarElement.style.display = 'none';
+    }
+
+    ionViewWillLeave() {
+        this.tabBarElement.style.display = 'flex';
+    }
+
+    goToBack() {
+        this.navCtrl.parent.select(0);
+    }
+
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad StoresPage');
         this.loadMap();
+    }
+
+    onDismiss(){
+        this.viewCtrl.dismiss();
     }
 
     loadMap() {

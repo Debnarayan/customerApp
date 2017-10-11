@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import {IonicPage, NavParams, Platform, ViewController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,7 +11,7 @@ export class MenuItemPage {
     menuTypeTab: string = 'all_menu';
 
     isiOS:boolean =false;
-  constructor(private navCtrl: NavController,
+  constructor(private viewCtrl: ViewController,
               private navParams: NavParams,
               private platform: Platform) {
       if (platform.is('ios')) {
@@ -22,5 +22,9 @@ export class MenuItemPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuItemPage');
   }
+
+    onDismiss(){
+        this.viewCtrl.dismiss();
+    }
 
 }

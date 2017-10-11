@@ -1,12 +1,18 @@
-<!--<ion-header>-->
+<ion-header>
 
-  <!--<ion-navbar>-->
-    <!--<ion-title>StoresPage</ion-title>-->
-  <!--</ion-navbar>-->
+    <ion-navbar color="primary">
+        <!--<button ion-button menuToggle color="light">-->
+        <!--<ion-icon name="menu"></ion-icon>-->
+        <!--</button>-->
+        <button ion-button clear icon-only color="light" (click)="goToBack()">
+            <ion-icon name="ios-arrow-down"></ion-icon>
+        </button>
+    <ion-title>Select Stores</ion-title>
+  </ion-navbar>
 
-<!--</ion-header>-->
+</ion-header>
 
 
-<ion-content padding>
+<ion-content class="primary-dark-bg">
     <div id="map"></div>
 </ion-content>

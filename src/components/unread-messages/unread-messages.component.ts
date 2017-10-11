@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {ModalController} from "ionic-angular";
 import {MessagesMockupService} from "../../services/mocks/messages-mockup/messages-mockup.service";
 import {Message} from "../../interfaces/message.interface";
@@ -9,12 +9,17 @@ import {Message} from "../../interfaces/message.interface";
 })
 export class UnreadMessagesComponent {
     Messages: Array<Message>;
+    @Output() unreadMessageCount: EventEmitter<Number>;
+
     constructor(private modalCtrl: ModalController,
                 private messageService: MessagesMockupService) {
         console.log('Hello UnreadMessagesComponent Component');
+        this.unreadMessageCount = new EventEmitter<Number>();
+
         this.messageService.getAllUnreadMessages()
             .then(data=>{
                 this.Messages = data;
+                this.unreadMessageCount.emit(data.length);
             })
             .catch(err=>{
                 alert("An unexpected error occured::"+err);

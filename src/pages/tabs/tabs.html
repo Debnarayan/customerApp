@@ -1,7 +1,7 @@
-<ion-tabs color="primary" tabsPlacement="top">
+<ion-tabs color="primary" tabsPlacement="top" tabsHideOnSubPages="true">
     <!-- Indicates with tabsPage should handle each tab here -->
         <ion-tab color="secondary" [root]="tab1Root" tabTitle="Pay"></ion-tab>
-        <ion-tab color="secondary" [root]="tab2Root" tabTitle="Stores"></ion-tab>
-        <ion-tab color="secondary" [root]="tab3Root" tabTitle="Gift"></ion-tab>
-        <ion-tab color="secondary" (ionSelect)="chat()" tabTitle="Order"></ion-tab>
+        <ion-tab color="secondary"  [root]="tab2Root" tabTitle="Stores"></ion-tab>
+        <ion-tab color="secondary" (ionSelect)="gift()" tabTitle="Gift"></ion-tab>
+        <ion-tab color="secondary" (ionSelect)="order()" tabTitle="Order"></ion-tab>
 </ion-tabs>

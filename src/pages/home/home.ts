@@ -1,12 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component, ViewChild} from '@angular/core';
+import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,20 +7,43 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'home.html',
 })
 export class HomePage {
+    @ViewChild(Content) content: Content;
+    tabName:String = 'home';
+    hasUnreadMessage:boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
   }
 
+
+    checkUnreadMessage(ev:Number){
+      if(ev>0){
+          this.hasUnreadMessage = true;
+      }else{
+          this.hasUnreadMessage = false;
+      }
+    }
+
+    tabSelected(ev:String){
+        this.content.scrollToTop();
+        this.tabName = ev;
+    }
+
     goToRegisterPage(){
-      this.navCtrl.push('RegisterPage');
+      let registerModal = this.modalCtrl.create('RegisterPage');
+      registerModal.present();
+      // this.navCtrl.push('RegisterPage');
     }
 
     goToLoginPage(){
-      this.navCtrl.push('LoginPage');
+        let loginModal = this.modalCtrl.create('LoginPage');
+        loginModal.present();
+      // this.navCtrl.push('LoginPage');
     }
 
 }

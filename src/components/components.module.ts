@@ -21,6 +21,7 @@ import { RewardsComponent } from './rewards/rewards.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { UnreadMessagesComponent } from './unread-messages/unread-messages.component';
 import { MessagesComponent } from './messages/messages.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import { MessagesComponent } from './messages/messages.component';
     RewardsComponent,
     PromotionComponent,
     UnreadMessagesComponent,
-    MessagesComponent
+    MessagesComponent,
+    SettingsComponent
     ],
     imports: [IonicModule,PipesModule,RoundProgressModule],
     exports: [
@@ -62,7 +64,8 @@ import { MessagesComponent } from './messages/messages.component';
     RewardsComponent,
     PromotionComponent,
     UnreadMessagesComponent,
-    MessagesComponent
+    MessagesComponent,
+    SettingsComponent
     ]
 })
 export class ComponentsModule {

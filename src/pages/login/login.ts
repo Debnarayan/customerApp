@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, ToastController, ViewController} from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,14 +8,17 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 })
 export class LoginPage {
 
-  constructor(private navCtrl: NavController,
-              private navParams: NavParams,
+  constructor(private viewCtrl: ViewController,
               private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+    onDismiss(){
+        this.viewCtrl.dismiss();
+    }
 
   checkUserLoginByEmailAndPassword(ev){
     console.log(ev);

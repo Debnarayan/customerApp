@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 
 /**
  * Generated class for the AddGiftPage page.
@@ -15,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddGiftPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private viewCtrl: ViewController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -24,6 +24,10 @@ export class AddGiftPage {
 
     addReferredGiftToAccount(){
       console.log("Make this section workable using EventEmitter in add-gift.component.ts")
+    }
+
+    onDismiss(){
+        this.viewCtrl.dismiss();
     }
 
 }

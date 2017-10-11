@@ -111,6 +111,9 @@ a{
   position: absolute;
 }
 
+.inline{
+  display: inline-block;
+}
 
 //-------------------------------------
 //header section
@@ -175,6 +178,14 @@ a{
 
 .primary-dark-bg{
   background: color($colors, primary-dark);
+}
+
+.secondary-bg{
+  background: color($colors, secondary);
+}
+
+.secondary-light-bg{
+  background: color($colors, secondary-light);
 }
 
 /*

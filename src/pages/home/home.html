@@ -10,13 +10,16 @@
 
 <!--</ion-header>-->
 <ion-toolbar color="primary">
-    <app-rewards></app-rewards>
+    <app-rewards [hasUnreadMessage]="hasUnreadMessage" (selectedSubTab)="tabSelected($event)"></app-rewards>
 </ion-toolbar>
 
 
 <ion-content class="primary-light-bg no-margin-at-top">
-        <app-unread-messages></app-unread-messages>
+        <app-messages *ngIf="tabName == 'messages'"></app-messages>
+        <app-settings *ngIf="tabName == 'settings'"></app-settings>
+        <app-unread-messages *ngIf="tabName == 'home'" (unreadMessageCount)="checkUnreadMessage($event)"></app-unread-messages>
         <app-promotion></app-promotion>
+
     <!--<ion-slides no-padding class="custom-slide" pager="true" loop="true" autoplay="3000">-->
         <!--<ion-slide>-->
             <!--<img class="custom-banner" src="./assets/banner/img0.jpg">-->
