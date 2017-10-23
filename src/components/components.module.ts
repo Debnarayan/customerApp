@@ -13,7 +13,6 @@ import {ContactUsComponent} from './contact-us/contact-us.component';
 import { MenuItemComponent } from './menu-item/menu-item.component';
 import { FeaturedItemComponent } from './featured-item/featured-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { ExpandableHeader } from './expandable-header/expandable-header';
 import { ViewAllItemsComponent } from './view-all-items/view-all-items.component';
 import { ArtworkComponent } from './artwork/artwork.component';
 import { ViewAllArtworksComponent } from './view-all-artworks/view-all-artworks.component';
@@ -22,6 +21,8 @@ import { PromotionComponent } from './promotion/promotion.component';
 import { UnreadMessagesComponent } from './unread-messages/unread-messages.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SettingsComponent } from './settings/settings.component';
+import {CardTypeComponent} from './card-type/card-type.component';
+import { PayPalComponent } from './paypal/paypal.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,6 @@ import { SettingsComponent } from './settings/settings.component';
         MenuItemComponent,
     FeaturedItemComponent,
     ProductDetailsComponent,
-    ExpandableHeader,
     ViewAllItemsComponent,
     ArtworkComponent,
     ViewAllArtworksComponent,
@@ -43,7 +43,9 @@ import { SettingsComponent } from './settings/settings.component';
     PromotionComponent,
     UnreadMessagesComponent,
     MessagesComponent,
-    SettingsComponent
+    SettingsComponent,
+    CardTypeComponent,
+    PayPalComponent
     ],
     imports: [IonicModule,PipesModule,RoundProgressModule],
     exports: [
@@ -57,7 +59,6 @@ import { SettingsComponent } from './settings/settings.component';
         MenuItemComponent,
     FeaturedItemComponent,
     ProductDetailsComponent,
-    ExpandableHeader,
     ViewAllItemsComponent,
     ArtworkComponent,
     ViewAllArtworksComponent,
@@ -65,7 +66,9 @@ import { SettingsComponent } from './settings/settings.component';
     PromotionComponent,
     UnreadMessagesComponent,
     MessagesComponent,
-    SettingsComponent
+    SettingsComponent,
+    CardTypeComponent,
+    PayPalComponent
     ]
 })
 export class ComponentsModule {

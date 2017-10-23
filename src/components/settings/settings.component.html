@@ -1,76 +1,78 @@
 <ion-list>
-    <ion-list-header>
-        Settings
+    <ion-list-header class="settings-header">
+        Account
     </ion-list-header>
 
-    <ion-item>
-        <ion-icon name="plane" item-start color="danger"></ion-icon>
-        <ion-label>Airplane Mode</ion-label>
-        <ion-toggle color="secondary"></ion-toggle>
-    </ion-item>
+    <a ion-item detail-none>
+        <ion-icon name="ios-contact" item-start></ion-icon>
+        <ion-label>Contact Information</ion-label>
+        <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+    </a>
 
-    <button ion-item>
-        <ion-icon name="wifi" item-start color="primary"></ion-icon>
-        <ion-label>Wi-Fi</ion-label>
-        <ion-note item-end>The Interwebz</ion-note>
-    </button>
-
-    <button ion-item>
-        <ion-icon name="bluetooth" item-start color="primary"></ion-icon>
-        <ion-label>Bluetooth</ion-label>
-        <ion-note item-end>Off</ion-note>
-    </button>
-
-    <button ion-item>
-        <ion-icon name="call" item-start color="secondary"></ion-icon>
-        <ion-label>Cellular</ion-label>
-    </button>
-
-    <button ion-item>
-        <ion-icon name="link" item-start color="secondary"></ion-icon>
-        <ion-label>Personal Hotspot</ion-label>
-        <ion-note item-end>Off</ion-note>
-    </button>
+    <a ion-item detail-none (click)="goToCardDetails()">
+        <ion-icon name="ios-card" item-start></ion-icon>
+        <ion-label>Payments Methods</ion-label>
+        <ion-note item-end>Debit Card</ion-note>
+    </a>
 </ion-list>
 
-<ion-list radio-group>
-    <ion-list-header>
-        Silence Phone
+<ion-list>
+    <ion-list-header class="settings-header">
+        Preference
     </ion-list-header>
 
     <ion-item>
-        <ion-label color="dark">Always</ion-label>
-        <ion-radio value="always" checked></ion-radio>
-    </ion-item>
-    <ion-item>
-        <ion-label color="dark">Only while phone is locked</ion-label>
-        <ion-radio value="locked"></ion-radio>
+        <ion-icon name="notifications" item-start></ion-icon>
+        <ion-label>Message Notifications</ion-label>
+        <ion-toggle color="secondary" [(ngModel)]="isNotificationEnabled" (ionChange)="changeNotification()"></ion-toggle>
     </ion-item>
 </ion-list>
 
 <ion-list>
-    <ion-list-header>
-        Apps Installed
+    <ion-list-header class="settings-header">
+        Security
     </ion-list-header>
 
     <ion-item>
-        <ion-icon name="ionic" item-start color="primary"></ion-icon>
-        <ion-label>Ionic View</ion-label>
-        <button ion-button outline item-end>Uninstall</button>
+        <ion-icon name="lock" item-start></ion-icon>
+        <ion-label>Passcode Lock</ion-label>
+        <ion-toggle color="secondary"></ion-toggle>
     </ion-item>
-    <ion-item>
-        <ion-icon name="brush" item-start color="primary"></ion-icon>
-        <ion-label>Ionic Creator</ion-label>
-        <button ion-button outline item-end>Uninstall</button>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="logo-octocat" item-start color="dark"></ion-icon>
-        <ion-label>Hubstruck</ion-label>
-        <button ion-button outline item-end>Uninstall</button>
-    </ion-item>
-    <ion-item>
-        <ion-icon name="paw" item-start color="danger"></ion-icon>
-        <ion-label>Barkpark</ion-label>
-        <button ion-button outline item-end>Uninstall</button>
-    </ion-item>
+    <a ion-item detail-none>
+        <ion-icon name="key" item-start></ion-icon>
+        <ion-label>Change Password</ion-label>
+        <ion-note item-end>Change</ion-note>
+    </a>
+</ion-list>
+
+<ion-list>
+    <ion-list-header class="settings-header">
+        About
+    </ion-list-header>
+
+    <button ion-item>
+        <ion-icon name="help-circle" item-start ></ion-icon>
+        <ion-label>Help</ion-label>
+    </button>
+
+    <button ion-item>
+        <ion-icon name="help-buoy" item-start></ion-icon>
+        <ion-label>Terms Of Use</ion-label>
+    </button>
+
+    <button ion-item>
+        <ion-icon name="information-circle" item-start></ion-icon>
+        <ion-label>Privacy Statement</ion-label>
+    </button>
+</ion-list>
+
+<ion-list>
+    <!--<ion-list-header class="settings-header">-->
+        <!--Sign Out-->
+    <!--</ion-list-header>-->
+
+    <a ion-item detail-none>
+        <ion-icon name="log-out" item-start></ion-icon>
+        <ion-label>Sign Out</ion-label>
+    </a>
 </ion-list>

@@ -1,16 +1,16 @@
 page-home {
-  .toolbar-ios {
+  .toolbar-ios.toolbar-primary {
     margin-top: 41px;
   }
   .content-ios {
-    margin-top: 123px;
+    margin-top: 144px;
   }
 
-  .toolbar-md {
+  .toolbar-md.toolbar-primary  {
     margin-top: 55px;
   }
   .content-md {
-    margin-top: 144px;
+    margin-top: 174px;
   }
   .custom-slide {
     height: 200px;
@@ -23,6 +23,25 @@ page-home {
 
   .no-margin-at-top > .scroll-content, .no-margin-at-top > .fixed-content {
     margin-top: 0 !important;
+  }
+
+  .reward-progress{
+    //width: 25px !important;
+    //height: 25px !important;
+    margin-top: -9px;
+    display: inline-block;
+    position: absolute;
+    path{
+      stroke: color($colors,secondary) !important;
+    }
+  }
+
+  ion-segment{
+    position: static !important;
+  }
+
+  ion-badge{
+    background-color: transparent !important;
   }
 
 }

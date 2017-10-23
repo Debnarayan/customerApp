@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Make Payment</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="primary-light-bg">
+    <ion-card>
+        <p margin class="text-lg">
+            <span>Total Items</span>
+            <span class="pull-right">{{bill.total_quantity}}</span>
+        </p>
+        <p margin class="text-lg">
+            <span>Total Price</span>
+            <span class="pull-right">{{bill.total_price}}</span>
+        </p>
+    </ion-card>
+    <app-paypal [payment]="paymentData"></app-paypal>
+</ion-content>

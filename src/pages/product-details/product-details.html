@@ -1,15 +1,15 @@
 <ion-header [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
-    <div class="primary-dark-bg product-header-container">
+    <div class="dark-bg product-header-container">
         <ion-buttons left *ngIf="hideheader">
             <button color="white" class="absolute" ion-button clear icon-only (click)="onDismiss()">
                 <ion-icon name="close"></ion-icon>
             </button>
         </ion-buttons>
         <div text-center>
-            <img class="product-header-img" alt="No Image" src="{{productDetails?.image_path}}/{{productDetails?.image_name}}">
+            <img class="product-header-img" alt="No Image" src="{{productDetails?.image_path}}">
         </div>
 
-        <ion-navbar padding-horizontal class="no-navbar light text-lg strong product-title">
+        <ion-navbar hideBackButton="true" padding-horizontal class="no-navbar light text-lg strong product-title">
             <ion-buttons left *ngIf="showheader">
                 <button color="white" ion-button clear icon-only (click)="onDismiss()">
                     <ion-icon name="close"></ion-icon>
@@ -30,7 +30,7 @@
 </ion-content>
 
 
-<ion-footer class="primary-dark-bg">
+<ion-footer class="dark-bg">
     <ion-item no-lines class="light transparent-bg">
         <div>
             <span class="strong new-line">Select Store</span>
@@ -40,9 +40,9 @@
             </button>
         </div>
 
-        <button color="white" ion-button item-right clear large icon-only>
+        <button color="white" ion-button item-right clear large icon-only (click)="goToOrders()">
             <ion-icon no-padding name="md-clipboard"></ion-icon>
-            <ion-badge *ngIf="orderItem?.quantity>0" class="transparent-bg secondary absolute">{{orderItem?.quantity}}</ion-badge>
+            <ion-badge *ngIf="totalQuantity>0" class="transparent-bg secondary absolute">{{totalQuantity}}</ion-badge>
         </button>
     </ion-item>
 </ion-footer>

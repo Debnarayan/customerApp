@@ -1,6 +1,7 @@
 
 export interface Order{
     id:number,
+    category_id:number,
     name:string,
     price:number,
     quantity?:number

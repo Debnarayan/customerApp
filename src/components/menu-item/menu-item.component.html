@@ -8,7 +8,7 @@
             <div class="white-bg" *ngFor="let product of Products;let i=index">
                 <ion-card *ngIf="i<20 && category.id==product.category_id" no-margin class="menu-item-card white-bg" (click)="presentProductDetails(product)">
                     <div class="circular-menu-item primary-light-bg">
-                        <img src="{{product.image_path}}/{{product.image_name}}"/>
+                        <img src="{{product.image_path}}"/>
                     </div>
                     <ion-card-content no-padding>
                         <ion-card-title text-center class="text-sm">

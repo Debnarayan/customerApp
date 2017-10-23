@@ -1,0 +1,187 @@
+app-card-type{
+
+      /* entire container, keeps perspective */
+      .flip-container {
+        perspective: 1000px;
+      }
+
+      /* flip the pane when hovered */
+      .flip-container.flipped .flipper {
+        transform: rotateY(180deg);
+      }
+
+      .flip-container, .front, .back {
+        width: 100%;
+        //height: 180px;
+        margin: 10px auto;
+      }
+
+      /* flip speed goes here */
+      .flipper {
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+
+      /* hide back of pane during swap */
+      .front, .back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        //background-color: #ecf0f1;
+        backface-visibility: hidden;
+        //-webkit-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+        //-moz-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+        //box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
+        //border: 1px solid #dee2e3;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* front pane, placed above back */
+      .front {
+        position: relative;
+        z-index: 2;
+        transform: rotateY(0deg);
+      }
+
+      /* back, initially hidden pane */
+      .back {
+        transform: rotateY(180deg);
+      }
+/////////////////////////////////////////////////
+
+  .payment-card{
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .flash-card-front{
+    position: relative;
+  }
+
+  .card-front-field{
+    position: absolute;
+    color: color($colors,white);
+    span{
+      font-family: 'Arial' !important;
+    }
+  }
+
+  .content-md {.field-line{
+    height:20px;
+  }}
+  .content-ios{.field-line{
+    height:24px;
+  }}
+
+  .field-line{
+    height:26px;
+  }
+
+  .card-number span{
+    margin: 0 4px;
+  }
+
+  .card-number span:first-child{
+    margin: 0 4px 0 0;
+  }
+
+  .card-valid-to span:first-child{
+    padding-right: 6px;
+    font-family: Arial !important;
+    font-size: small;
+    font-weight: bold;
+  }
+
+  .valid-to input::placeholder{
+    font-size: small;
+  }
+
+  .card-cvv{
+    position: absolute;
+    right: 26px;
+    bottom: 58px;
+    font-size: xx-large;
+  }
+
+  .cvv-input input[type=tel], .card-cvv span{
+    -webkit-text-security: disc;
+  }
+
+
+
+  @media only screen and (min-device-height: 480px) {
+    .card-front-field{
+      span{
+        font-size: small;
+      }
+      bottom: 9px;
+      left: 28px;
+    }
+
+    .valid-to input::placeholder{
+      font-size: x-small;
+    }
+
+    .card-cvv{
+      bottom: 65px;
+    }
+  }
+
+  @media only screen and (min-device-height: 640px) {
+    .card-front-field{
+      span{
+        font-size: large;
+      }
+      bottom: 14px;
+      left: 28px;
+    }
+
+    .valid-to input::placeholder{
+      font-size: small;
+    }
+
+    .card-cvv{
+      bottom: 75px;
+    }
+  }
+
+  @media only screen and (min-device-height: 660px) {
+    .card-front-field{
+      span{
+        font-size: large;
+      }
+      bottom: 14px;
+      left: 32px;
+    }
+
+    .valid-to input::placeholder{
+      font-size: small;
+    }
+
+    .card-cvv{
+      bottom: 79px;
+    }
+  }
+
+  @media only screen and (min-device-height: 720px) {
+    .card-front-field{
+      span{
+        font-size: large;
+      }
+      bottom: 18px;
+      left: 40px;
+    }
+
+    .valid-to input::placeholder{
+      font-size: small;
+    }
+
+    .card-cvv{
+      bottom: 89px;
+    }
+  }
+}

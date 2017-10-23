@@ -1,7 +1,9 @@
 page-stores {
-  ._gmaps_cdv_ .scroll-content,._gmaps_cdv_ .fixed-content,.scroll-content,.fixed-content{
-  //  background-color: transparent !important;
-  margin-top: 76px !important;
+  ._gmaps_cdv_ .scroll-content, ._gmaps_cdv_ .fixed-content, .content-md>.scroll-content, .content-md>.fixed-content {
+    margin-top: 76px !important;
+  }
+  .content-ios.scroll-content, .content-ios.fixed-content {
+    margin-top: 62px !important;
   }
   #map {
     height: 75%;

@@ -1,0 +1,70 @@
+
+<!--Card Image-->
+<div *ngIf="paymentMethod == 'debit'|| paymentMethod == 'credit'" class="flip-container" [class.flipped]="flipped">
+    <div class="flipper">
+        <div class="front">
+            <div class="flash-card-front">
+                <img src="./assets/banner/shopping-card/{{paymentMethod}}.png">
+                <div class="card-front-field">
+                <div class="field-line card-number">
+                    <span>{{part1}}</span>
+                    <span>{{part2}}</span>
+                    <span>{{part3}}</span>
+                    <span>{{part4}}</span>
+                    <span>{{part5}}</span>
+                </div>
+                <div class="field-line">
+                    <span>{{ cardDetails.get('cardholder_name').value }}</span>
+                </div>
+                <div class="field-line card-valid-to">
+                    <span ion-text color="secondary">Valid Upto</span>
+                    <span>{{ cardDetails.get('valid_to_month').value }}</span>
+                    <span ion-text color="secondary">/</span>
+                    <span>{{ cardDetails.get('valid_to_year').value }}</span>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="back">
+            <div class="flash-card-back">
+                <img src="./assets/banner/shopping-card/back.png">
+                <div class="card-cvv">
+                    <span>{{ cardDetails.get('cvv').value }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Card Data-->
+<form *ngIf="paymentMethod == 'debit'|| paymentMethod == 'credit'"
+        [formGroup]="cardDetails" (ngSubmit)="onSubmit(cardDetails.value)">
+    <ion-item>
+        <ion-input type="tel" maxlength="20" formControlName="card_number" placeholder="Enter Card Number" (ionChange)="onChangeCardNumber($event)" (ionFocus)="flip(false)"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" formControlName="cardholder_name" placeholder="Name On Card" (ionChange)="onChangeCardholderName($event)" (ionFocus)="flip(false)"></ion-input>
+    </ion-item>
+    <ion-row>
+        <ion-col no-padding>
+            <ion-item>
+                <ion-input type="tel" maxlength="2" formControlName="valid_to_month" class="valid-to" placeholder="End Month"
+                           (ionFocus)="flip(false)"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col no-padding>
+            <ion-item>
+                <ion-input type="tel" maxlength="2" formControlName="valid_to_year" class="valid-to" placeholder="End Year"
+                           (ionFocus)="flip(false)"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col no-padding>
+            <ion-item>
+                <ion-input type="tel" maxlength="3" formControlName="cvv" class="cvv-input" placeholder="CVV" (ionFocus)="flip(true)"></ion-input>
+            </ion-item>
+        </ion-col>
+    </ion-row>
+    <button margin-vertical ion-button full color="primary-dark" class="secondary" [disabled]="!cardDetails.valid">SAVE</button>
+</form>
+

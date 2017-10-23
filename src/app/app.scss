@@ -92,6 +92,14 @@ a{
   background: none;
 }
 
+.pull-right{
+  float: right;
+}
+
+.pull-left{
+  float: left;
+}
+
 .border-outside-light{
   border:1px solid color($colors,primary-light);
 }
@@ -140,8 +148,8 @@ a{
   padding: 8px;
 }
 
-.padding-horizontal-10{
-  padding: 0 10px;
+.padding-horizontal-9{
+  padding: 0 9px;
 }
 
 .padding-left-none{
@@ -228,21 +236,21 @@ color: color($colors,primary-light);
 //---------------------------------------
 
 .text-sm{
-  font-size: small;
+  font-size: small !important;
 }
 
 .text-xs{
-  font-size: x-small;
+  font-size: x-small !important;
 }
 
 .text-lg{
-  font-size: large;
+  font-size: large !important;
 }
 
 .text-xl{
-  font-size: x-large;
+  font-size: x-large !important;
 }
 
 .text-xxl{
-  font-size: xx-large;
+  font-size: xx-large !important;
 }

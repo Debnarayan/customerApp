@@ -1,143 +1,32 @@
 import {Component} from '@angular/core';
 import {ModalController, NavController} from "ionic-angular";
 import {Category, Product} from "../../interfaces/product.interface";
+import {ProductsMockupService} from "../../services/mocks/products-mockup/products-mockup.service";
 
 @Component({
     selector: 'app-menu-item',
     templateUrl: 'menu-item.component.html'
 })
 export class MenuItemComponent {
-    Categories=[
-        {
-            id:1,
-            name:'Food'
-        },
-        {
-            id:2,
-            name:'Drinks'
-        },
-        {
-            id: 3,
-            name: 'Starter'
-        }]
 
-    Products = [
-        {
-            id: 1,
-            category_id:1,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food1.png',
-            price: 10,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 2,
-            category_id:3,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food2.png',
-            price: 15,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 3,
-            category_id:2,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food3.png',
-            price: 25,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 4,
-            category_id:3,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food3.png',
-            price: 25,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 5,
-            category_id:1,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food3.png',
-            price: 25,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 6,
-            category_id:2,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food1.png',
-            price: 10,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        },
-        {
-            id: 7,
-            category_id:2,
-            name: 'Nine Inch Nails Live',
-            image_path: './assets/banner/menu-item',
-            image_name: 'food2.png',
-            price: 15,
-            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n' +
-            '            Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n' +
-            '            when an unknown printer took a galley of type and scrambled it to make a type\n' +
-            '            specimen book. It has survived not only five centuries, but also the leap into\n' +
-            '            electronic typesetting, remaining essentially unchanged. It was popularised in\n' +
-            '            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n' +
-            '            and more recently with desktop publishing software like Aldus PageMaker including\n' +
-            '            versions of Lorem Ipsum.'
-        }]
+    Categories: Array<Category>;
+    Products: Array<Product>;
 
     constructor(private navCtrl: NavController,
-                private modalCtrl: ModalController) {
+                private modalCtrl: ModalController,
+                private productService: ProductsMockupService) {
         console.log('Hello AllItemComponent Component');
+        this.productService.getProductCategories()
+            .then(categories=>{
+                this.Categories = categories;
+                this.productService.getAllProducts()
+                    .then(products=>{
+                        this.Products = products;
+                    })
+            }).catch(err=>{
+            alert("An unexpected error occured"+err);
+        })
+
     }
 
     presentProductDetails(product: Product) {

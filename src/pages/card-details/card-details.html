@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Card Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="primary-light-bg">
+    <ion-item no-lines>
+        <ion-label>Payment Method</ion-label>
+        <ion-select (ionChange)="onSelect()" [(ngModel)]="paymentMethod" interface="action-sheet">
+            <ion-option *ngFor="let type of PaymentTypes" [value]="type.key">{{type.label}}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <app-card-type *ngIf="paymentMethod == 'debit' || paymentMethod == 'credit'" [paymentType]="paymentMethod" [cardDetails]="cardDetails"></app-card-type>
+    <app-paypal *ngIf="paymentMethod == 'paypal'"></app-paypal>
+
+</ion-content>

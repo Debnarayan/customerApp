@@ -8,8 +8,11 @@ import {Content, IonicPage, ModalController, NavController, NavParams} from 'ion
 })
 export class HomePage {
     @ViewChild(Content) content: Content;
-    tabName:String = 'home';
-    hasUnreadMessage:boolean = false;
+    reward: number = 5;
+    max: number = 12;
+
+    homeTabs:String;
+    unreadMessageCount:Number;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -22,16 +25,11 @@ export class HomePage {
 
 
     checkUnreadMessage(ev:Number){
-      if(ev>0){
-          this.hasUnreadMessage = true;
-      }else{
-          this.hasUnreadMessage = false;
-      }
+        this.unreadMessageCount = ev;
     }
 
-    tabSelected(ev:String){
+    tabChange(){
         this.content.scrollToTop();
-        this.tabName = ev;
     }
 
     goToRegisterPage(){

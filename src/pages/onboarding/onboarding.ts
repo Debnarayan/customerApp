@@ -4,6 +4,7 @@ import {AuthAppProvider} from "../../providers/auth/auth-app.service";
 import {ConnectivityService} from "../../providers/connectivity/connectivity.service";
 import {AlertService} from "../../providers/alert/alert.service";
 import {LoadingService} from "../../providers/loading/loading.service";
+import {GlobalConfig} from "../../config/global.config";
 
 
 @IonicPage()
@@ -16,7 +17,7 @@ export class OnboardingPage {
     termsData: Array<string>;
 
     constructor(private navCtrl: NavController,
-                private navParams: NavParams,
+                private global: GlobalConfig,
                 private authApp: AuthAppProvider,
                 private loading: LoadingService,
                 private connectService: ConnectivityService,
@@ -29,7 +30,8 @@ export class OnboardingPage {
         this.authApp.getAppData()
             .subscribe(
                 (data) => {
-                    console.log(data);
+                    console.log(data.response.company_info_id);
+                    this.global.setCompanyId(Number(data.response.company_info_id));
                     this.loading.dismissLoading();
                     this.termsData = data.response;
                 },

@@ -52,7 +52,7 @@ export class ContactUsComponent implements OnInit{
     async onSubmit({value, valid}: { value: ContactUsForm, valid: Boolean }) {
         if (valid) {
             console.log(value);
-            await this.auth.getResponse(value, 'secure/contact_support')
+            await this.auth.getSupportResponse(value, 'secure/contact_support')
                 .subscribe((data) => {
                     this.contactUsResponse.emit(data);
                     this.contactUsForm.reset();

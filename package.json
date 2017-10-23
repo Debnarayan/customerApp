@@ -28,10 +28,14 @@
         "@ionic-native/google-maps": "^4.3.1",
         "@ionic-native/in-app-browser": "^4.2.1",
         "@ionic-native/network": "^4.2.1",
+        "@ionic-native/paypal": "^4.3.1",
         "@ionic-native/splash-screen": "^4.3.0",
+        "@ionic-native/sqlite": "^4.3.1",
         "@ionic-native/status-bar": "^4.3.0",
         "@ionic/storage": "2.0.1",
         "angular-svg-round-progressbar": "^1.1.1",
+        "card.io.cordova.mobilesdk": "^2.1.0",
+        "com.paypal.cordova.mobilesdk": "^3.5.0",
         "cordova-android": "^6.2.3",
         "cordova-plugin-app-version": "^0.1.9",
         "cordova-plugin-compat": "^1.1.0",
@@ -46,6 +50,7 @@
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.2",
         "cordova-plugin-whitelist": "^1.3.1",
+        "cordova-sqlite-storage": "^2.0.4",
         "ionic-angular": "3.6.1",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
@@ -75,7 +80,9 @@
             "cordova-plugin-googlemaps": {
                 "API_KEY_FOR_ANDROID": "AIzaSyCnbdTJrIWCRFhTOyLFxinctMS66gcBAXY",
                 "API_KEY_FOR_IOS": "AIzaSyDmyXdCZ9EctNj9_rF1R-Xh8EPq6L8AD1E"
-            }
+            },
+            "com.paypal.cordova.mobilesdk": {},
+            "cordova-sqlite-storage": {}
         },
         "platforms": [
             "android"
