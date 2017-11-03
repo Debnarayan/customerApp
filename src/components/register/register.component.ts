@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PasswordValidator} from "../../validators/password.validator";
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {AppService} from "../../services/app.service";
 
 @Component({
     selector: 'app-register',
@@ -10,10 +11,12 @@ import {InAppBrowser} from '@ionic-native/in-app-browser';
 export class RegisterComponent implements OnInit {
 
     registrationForm: FormGroup;
+    @Output() registerResponse: EventEmitter<any> = new EventEmitter<any>();
 
     // isPasswordMatched: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
+    constructor(private appService: AppService,
+                private formBuilder: FormBuilder,
                 private iab: InAppBrowser) {
         console.log('Hello RegisterComponent Component');
     }
@@ -62,7 +65,7 @@ export class RegisterComponent implements OnInit {
                     Validators.required,
                     Validators.pattern('^\\d{10}$')
                 ])],
-                mode_of_communication: ['all', Validators.required],
+                mode_of_communication: ['both', Validators.required],
                 dob: ['', Validators.required],
                 address: ['', Validators.required],
                 state: ['', Validators.compose([
@@ -73,7 +76,11 @@ export class RegisterComponent implements OnInit {
                     Validators.required,
                     Validators.pattern('^[a-zA-Z ]*$')
                 ])],
-                pincode: ['', Validators.required],
+                pincode: ['',Validators.compose([
+                    Validators.required,
+                    Validators.minLength(4),
+                    Validators.maxLength(8)
+                ])],
                 card_number: [''],
                 card_security_key: [''],
                 is_subscribe: [true],
@@ -132,16 +139,22 @@ export class RegisterComponent implements OnInit {
             {type: 'pattern', message: 'Enter a valid City Name.'}
         ],
         'pincode': [
-            {type: 'required', message: 'Pincode is required.'}
+            {type: 'required', message: 'Pincode is required.'},
+            {type: 'minlength', message: 'Pincode must be at least 4 digit.'},
+            {type: 'maxlength', message: 'Pincode not more than 8 digit.'},
         ],
         'terms': [
             {type: 'pattern', message: 'You must accept terms and conditions.'}
         ]
     };
 
-    onSubmit(formValue) {
-        console.log(formValue);
+    onSubmit() {
         console.log(this.registrationForm.value)
+        this.appService.backendCallback(this.registrationForm.value,'secure/cust_sign_up')
+            .subscribe((resolve)=>{
+                console.log(resolve);
+                this.registerResponse.emit(resolve);
+            })
     }
 
     viewTerms() {

@@ -23,6 +23,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { SettingsComponent } from './settings/settings.component';
 import {CardTypeComponent} from './card-type/card-type.component';
 import { PayPalComponent } from './paypal/paypal.component';
+import { SavedCardComponent } from './saved-card/saved-card.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { PayPalComponent } from './paypal/paypal.component';
     MessagesComponent,
     SettingsComponent,
     CardTypeComponent,
-    PayPalComponent
+    PayPalComponent,
+    SavedCardComponent
     ],
     imports: [IonicModule,PipesModule,RoundProgressModule],
     exports: [
@@ -68,7 +70,8 @@ import { PayPalComponent } from './paypal/paypal.component';
     MessagesComponent,
     SettingsComponent,
     CardTypeComponent,
-    PayPalComponent
+    PayPalComponent,
+    SavedCardComponent
     ]
 })
 export class ComponentsModule {

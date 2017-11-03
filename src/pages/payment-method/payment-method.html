@@ -15,12 +15,8 @@
     <ion-list-header margin-top class="margin-bottom-none">
         ACTIVE PAYMENT METHOD
     </ion-list-header>
-    <ion-item margin-bottom no-lines (click)="setCardForCurrentTransaction()">
-        <ion-thumbnail class="payment-card-thumbnail" item-left>
-            <img class="payment-card-thumbnail" src="./assets/logo/visa.png">
-        </ion-thumbnail>
-        <ion-label item-right>**********647</ion-label>
-    </ion-item>
+
+    <app-saved-card></app-saved-card>
 
     <ion-item margin-vertical no-lines>
         <button item-left ion-button small icon-only>

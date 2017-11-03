@@ -23,4 +23,13 @@ export class LoadingService {
         this.loading.present();
     }
 
+    presentCustomLoading(customSpinner='crescent',customMessage) {
+        this.loading = this.loadingCtrl.create({
+            spinner: customSpinner,
+            content: customMessage
+        });
+
+        this.loading.present();
+    }
+
 }

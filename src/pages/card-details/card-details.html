@@ -16,6 +16,7 @@
     </ion-item>
 
     <app-card-type *ngIf="paymentMethod == 'debit' || paymentMethod == 'credit'" [paymentType]="paymentMethod" [cardDetails]="cardDetails"></app-card-type>
+
     <app-paypal *ngIf="paymentMethod == 'paypal'"></app-paypal>
 
 </ion-content>

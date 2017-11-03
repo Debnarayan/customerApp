@@ -1,5 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {ProductsMockupService} from "../../services/mocks/products-mockup/products-mockup.service";
+import {LoadingService} from "../../providers/loading/loading.service";
 
 @IonicPage()
 @Component({
@@ -15,12 +17,13 @@ export class HomePage {
     unreadMessageCount:Number;
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
+              private loading: LoadingService,
               private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+    this.loading.dismissLoading();
   }
 
 
@@ -42,6 +45,10 @@ export class HomePage {
         let loginModal = this.modalCtrl.create('LoginPage');
         loginModal.present();
       // this.navCtrl.push('LoginPage');
+    }
+
+    onSubTabClick(){
+        this.loading.presentLoading();
     }
 
 }

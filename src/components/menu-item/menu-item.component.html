@@ -1,18 +1,18 @@
 <ion-grid class="container1" *ngFor="let category of Categories">
     <ion-item-divider color="white" class="text-xl">
-        {{category.name}}
+        {{category?.product_category_name}}
         <button ion-button item-end clear color="secondary" class="no-decoration" (click)="goToViewAllItems(category)">See All</button>
     </ion-item-divider>
     <ion-scroll no-padding scrollX="true" class="category-item-scroller">
         <div class="menu-item-width">
-            <div class="white-bg" *ngFor="let product of Products;let i=index">
-                <ion-card *ngIf="i<20 && category.id==product.category_id" no-margin class="menu-item-card white-bg" (click)="presentProductDetails(product)">
+            <div class="white-bg" *ngFor="let product of Products">
+                <ion-card *ngIf="category?.product_category_id==product?.category_id" no-margin class="menu-item-card white-bg" (click)="presentProductDetails(product)">
                     <div class="circular-menu-item primary-light-bg">
-                        <img src="{{product.image_path}}"/>
+                        <img [src]="product?.product_image ? global.SERVER_URL+'backend/web/uploads/product_image/'+product?.product_image : './assets/logo/no-image.jpg'"/>
                     </div>
                     <ion-card-content no-padding>
                         <ion-card-title text-center class="text-sm">
-                            {{product.name}}
+                            {{product?.product_name}}
                         </ion-card-title>
                     </ion-card-content>
                 </ion-card>

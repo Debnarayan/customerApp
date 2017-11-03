@@ -7,7 +7,7 @@ export class PayPalInit{
     async config(){
         return await this.payPal.init({
             PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
-            PayPalEnvironmentSandbox: 'AcwVVr4GO3OtLPfo38hxICGQNG6YNpSOEzdS-KXD9Vn46IGX0xdDUB2SPK7Hrvr4T1rgEaxYx9SI268X'
+            PayPalEnvironmentSandbox: 'AXYuACh8hFJA4BtaUeSllf-sbfGopVhgYRAE9L3-4SHjYUDu6Sg0pfteff0k8KVjmJ1UWMsoCJbdJr27'
         })
     }
 }

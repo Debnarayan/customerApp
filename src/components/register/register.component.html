@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+<form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <ion-list class="no-line-last-child">
         <ion-item class="dark-bg">
             <ion-label floating color="primary" class="primary-label-color">First Name</ion-label>
@@ -109,7 +109,7 @@
 
                 <ion-col col-3 class="same-line">
                     <ion-label color="light" no-margin>Both</ion-label>
-                    <ion-radio color="secondary" value="all"></ion-radio>
+                    <ion-radio color="secondary" value="both"></ion-radio>
                 </ion-col>
             </ion-row>
         </ion-list>

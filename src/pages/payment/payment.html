@@ -18,5 +18,10 @@
             <span class="pull-right">{{bill.total_price}}</span>
         </p>
     </ion-card>
-    <app-paypal [payment]="paymentData"></app-paypal>
+
+    <app-saved-card [bill]="bill" (cardDetailResponse)="checkCustomerCardDataAvailability($event)"></app-saved-card>
+
+    <!--<h2 ion-text text-center *ngIf="hasSavedCard">Or</h2>-->
+
+    <!--<app-paypal [payment]="paymentData"></app-paypal>-->
 </ion-content>

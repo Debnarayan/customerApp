@@ -30,7 +30,7 @@ export class OnboardingPage {
         this.authApp.getAppData()
             .subscribe(
                 (data) => {
-                    console.log(data.response.company_info_id);
+                    console.log(data.response);
                     this.global.setCompanyId(Number(data.response.company_info_id));
                     this.loading.dismissLoading();
                     this.termsData = data.response;

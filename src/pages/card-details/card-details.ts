@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {LoadingService} from "../../providers/loading/loading.service";
 
 
 @IonicPage()
@@ -16,7 +17,8 @@ export class CardDetailsPage implements OnInit {
 
     constructor(private navCtrl: NavController,
                 private navParams: NavParams,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private loading: LoadingService) {
         this.PaymentTypes =
             [{
                 key: 'paypal',
@@ -34,6 +36,7 @@ export class CardDetailsPage implements OnInit {
 
     ngOnInit() {
         this.cardDetails = this.formBuilder.group({
+            card_type: [''],
             cardholder_name: ['', Validators.compose([
                 Validators.required,
                 Validators.pattern('^[A-Z0-9\\s]+$')
@@ -65,6 +68,8 @@ export class CardDetailsPage implements OnInit {
     }
 
     onSelect() {
+        this.loading.presentLoading();
+        //save payment method type locally/server
         this.cardDetails.reset();
     }
 

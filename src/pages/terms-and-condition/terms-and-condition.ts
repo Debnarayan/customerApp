@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EmailComposer} from "@ionic-native/email-composer";
+import {LoadingService} from "../../providers/loading/loading.service";
 
 @IonicPage()
 @Component({
@@ -14,7 +15,8 @@ export class TermsAndConditionPage {
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
-              private emailComposer: EmailComposer) {
+              private emailComposer: EmailComposer,
+              private loading: LoadingService) {
       this.pageTitle = navParams.data.content.page_title;
       this.pageContent = navParams.data.content.page_content;
   }
@@ -40,6 +42,7 @@ export class TermsAndConditionPage {
   }
 
     acceptTerms(){
+        this.loading.presentLoading();
       this.navCtrl.setRoot('TabsPage');
   }
 

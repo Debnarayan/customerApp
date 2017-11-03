@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Category} from "../../interfaces/product.interface";
+import {ArtworkCategory} from "../../interfaces/artwork.interface";
 
 @Pipe({
   name: 'filterByCategory',
 })
 export class FilterByCategoryPipe implements PipeTransform {
-    transform(items: Array<any>, category: Category): Array<any> {
+    transform(items: Array<any>, category:ArtworkCategory): Array<any> {
         return items.filter(item => item.category_id === category.id);
     }
 }

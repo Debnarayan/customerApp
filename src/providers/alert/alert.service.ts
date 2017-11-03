@@ -47,4 +47,20 @@ export class AlertService {
         this.alert.present();
     }
 
+    commonAlert(title,subTitle,){
+        this.alert = this.alertCtrl.create({
+            title: title,
+            subTitle: subTitle,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    handler: () => {
+                        return this.dismissAlert();
+                    }
+                }
+            ]
+        });
+        this.alert.present();
+    }
+
 }

@@ -14,6 +14,6 @@ export interface Product extends Order{
 }
 
 export interface Category{
-    id: number,
-    name: string
+    product_category_id: number,
+    product_category_name: string
 }

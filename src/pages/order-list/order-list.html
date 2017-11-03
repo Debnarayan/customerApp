@@ -1,9 +1,3 @@
-<!--
-  Generated template for the OrderListPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
@@ -14,9 +8,9 @@
 
 
 <ion-content padding class="primary-light-bg">
-    <ion-item no-lines margin-vertical class="primary-dark-bg" *ngFor="let order of Orders">
+    <ion-item no-lines margin-vertical class="primary-dark-bg card-view" *ngFor="let order of Orders">
         <ion-thumbnail item-start>
-            <img [src]="order?.image ? order?.image : './assets/logo/no-image.jpg'">
+            <img [src]="order?.product_image ? global.SERVER_URL+'backend/web/uploads/product_image/'+order?.product_image : './assets/logo/no-image.jpg'">
         </ion-thumbnail>
         <h2 ion-text color="white">{{order.name}}</h2>
         <p ion-text color="white">Price: {{order.price}}</p>
@@ -24,7 +18,7 @@
         <p class="white text-xl pull-right">{{order.quantity*order.price}}</p>
     </ion-item>
 
-    <ion-fab bottom right>
+    <ion-fab *ngIf="Orders.length > 0" bottom right>
         <button ion-button round large class="no-decoration secondary" (click)="placeOrder()">Place Order</button>
     </ion-fab>
 </ion-content>

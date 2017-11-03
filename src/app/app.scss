@@ -92,6 +92,18 @@ a{
   background: none;
 }
 
+.payment-card-thumbnail{
+  height: 40px !important;
+  min-height: 40px !important;
+  width: 56px !important;
+  border-radius: 5px;
+}
+
+.card-view{
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
 .pull-right{
   float: right;
 }

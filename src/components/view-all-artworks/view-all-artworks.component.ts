@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Category} from "../../interfaces/product.interface";
+import {ArtworkCategory} from "../../interfaces/artwork.interface";
 
 
 @Component({
@@ -7,7 +8,7 @@ import {Category} from "../../interfaces/product.interface";
   templateUrl: 'view-all-artworks.component.html'
 })
 export class ViewAllArtworksComponent {
-    @Input('selectedCategory') selectedCategory: Category;
+    @Input('selectedCategory') selectedCategory: ArtworkCategory;
     @Output() allArtworkResponse: EventEmitter<Object>;
     selectedArtwork:Object;
 

@@ -17,10 +17,6 @@ export class PaymentMethodPage {
     console.log('ionViewDidLoad PaymentMethodPage');
   }
 
-    setCardForCurrentTransaction(){
-      this.viewCtrl.dismiss();
-    }
-
     onDismiss(){
         this.viewCtrl.dismiss();
     }

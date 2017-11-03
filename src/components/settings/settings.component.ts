@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from "ionic-angular";
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {ToastService} from "../../providers/toast/toast.service";
 
 @Component({
@@ -9,7 +10,8 @@ import {ToastService} from "../../providers/toast/toast.service";
 export class SettingsComponent {
     isNotificationEnabled:boolean = false;
   constructor(private navCtrl: NavController,
-              private toast: ToastService) {
+              private toastService: ToastService,
+              private iab: InAppBrowser) {
     console.log('Hello SettingsComponent Component');
   }
 
@@ -22,7 +24,15 @@ export class SettingsComponent {
         if(this.isNotificationEnabled)
         {status='ON';}
         else{status='OFF'};
-        this.toast.presentToast('Message Notification :: '+status);
+        this.toastService.presentToast('Message Notification :: '+status);
+    }
+
+    viewTerms() {
+        this.iab.create('http://www.starbucks.in/about-us/company-information/online-policies/terms-of-use');
+    }
+
+    viewPolicy() {
+        this.iab.create('http://www.starbucks.in/card/learn-more/privacy-policy');
     }
 
 }

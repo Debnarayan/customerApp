@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
-import {Category} from "../../interfaces/product.interface";
+import {IonicPage, NavParams, ViewController} from 'ionic-angular';
+import {ArtworkCategory} from "../../interfaces/artwork.interface";
 
 @IonicPage()
 @Component({
@@ -8,11 +8,11 @@ import {Category} from "../../interfaces/product.interface";
   templateUrl: 'view-all-artworks.html',
 })
 export class ViewAllArtworksPage {
-    category:Category;
+    artworkCategory:ArtworkCategory;
     selectedArtwork:Object;
   constructor(private navParams: NavParams,
               private viewCtrl: ViewController) {
-      this.category = navParams.get('category');
+      this.artworkCategory = navParams.get('artwork_category');
   }
 
   ionViewDidLoad() {

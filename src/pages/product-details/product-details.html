@@ -6,7 +6,7 @@
             </button>
         </ion-buttons>
         <div text-center>
-            <img class="product-header-img" alt="No Image" src="{{productDetails?.image_path}}">
+            <img class="product-header-img" [src]="productDetails?.product_image ? global.SERVER_URL+'backend/web/uploads/product_image/'+productDetails?.product_image  : './assets/logo/no-image.jpg'">
         </div>
 
         <ion-navbar hideBackButton="true" padding-horizontal class="no-navbar light text-lg strong product-title">
@@ -15,7 +15,7 @@
                     <ion-icon name="close"></ion-icon>
                 </button>
             </ion-buttons>
-            {{productDetails.name}}
+            {{productDetails.product_name}}
         </ion-navbar>
     </div>
 </ion-header>
@@ -24,7 +24,7 @@
 <!--<ion-content padding fullscreen #mycontent>-->
 <ion-content class="primary-light-bg">
     <ion-fab bottom right>
-        <button ion-button round large class="no-decoration secondary" (click)="addToCart(orderItem)">Add Item</button>
+        <button ion-button round large class="no-decoration secondary" [disabled]="quantity<=0" (click)="addToCart(orderItem)">Add Item</button>
     </ion-fab>
     <app-product-details [product]="productDetails" (changeQuantity)="quantityOnChange($event)"></app-product-details>
 </ion-content>

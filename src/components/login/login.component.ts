@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginForm} from "../../interfaces/login-form.interface";
 import {AuthUserProvider} from "../../providers/auth/auth-user.service";
+import {GlobalConfig} from "../../config/global.config";
 
 @Component({
     selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
     @Output() loginResponse: EventEmitter<LoginForm>;
 
     constructor(private formBuilder: FormBuilder,
-                private auth: AuthUserProvider) {
+                private auth: AuthUserProvider,
+                private global: GlobalConfig) {
         console.log('Hello LoginComponent Component');
         this.loginResponse = new EventEmitter<LoginForm>();
     }
@@ -42,6 +44,10 @@ export class LoginComponent implements OnInit {
         if (valid) {
             await this.auth.getUserData(value, 'secure/cust_login')
                 .subscribe((data) => {
+                    if (data.status !== 'fail') {
+                        this.global.setCustomerId(data.response['id']);
+                        this.global.setLoginState(true);
+                    }
                     this.loginResponse.emit(data);
                 })
         }

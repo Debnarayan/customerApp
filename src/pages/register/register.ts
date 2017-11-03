@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, ViewController} from 'ionic-angular';
+import {ToastService} from "../../providers/toast/toast.service";
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -15,7 +11,8 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
 })
 export class RegisterPage {
 
-  constructor(private viewCtrl: ViewController) {
+  constructor(private toastService: ToastService,
+              private viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
@@ -24,6 +21,15 @@ export class RegisterPage {
 
     onDismiss(){
         this.viewCtrl.dismiss();
+    }
+
+    responseAfterRegistration(ev){
+        console.log(ev);
+        if(ev.status == 'fail'){
+            this.toastService.commonToast('',4000,ev.response);
+        }else{
+            this.toastService.commonToast('',4000,ev.response);
+        }
     }
 
 }

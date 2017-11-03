@@ -3,6 +3,7 @@ import {Content, IonicPage, NavController, NavParams, ViewController} from 'ioni
 import {Category, Order, Product} from "../../interfaces/product.interface";
 import {ToastService} from "../../providers/toast/toast.service";
 import {DatabaseConfig} from "../../config/database.config";
+import {GlobalConfig} from "../../config/global.config";
 
 
 @IonicPage()
@@ -31,7 +32,8 @@ export class ProductDetailsPage implements OnInit {
     quantity: number = 0;
     totalQuantity: number = 0;
 
-    constructor(private navCtrl: NavController,
+    constructor(private global: GlobalConfig,
+                private navCtrl: NavController,
                 private navParams: NavParams,
                 private viewCtrl: ViewController,
                 private dbConfig: DatabaseConfig,
@@ -49,7 +51,7 @@ export class ProductDetailsPage implements OnInit {
             }
             });
 
-        this.orderItem = navParams.data.item;
+        this.orderItem = navParams.get('item');
         console.log(this.orderItem);
         this.productDetails = navParams.get('item');
         this.categoryDetails = navParams.get('category');
@@ -102,7 +104,7 @@ export class ProductDetailsPage implements OnInit {
         this.orderItem.quantity = this.quantity;
         console.log(item);
         console.log(this.orderItem);
-        this.dbConfig.storeOrderData(this.orderItem)
+        this.dbConfig.storeOrderData(this.global.getCustomerId(), this.orderItem)
             .then(() => {
                 setTimeout(() => {
                     this.dbConfig.selectData()

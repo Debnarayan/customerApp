@@ -35,9 +35,11 @@ export class ProductDetailsComponent {
     }
 
     addQuantity(q:number){
-        this.quantity = q+1;
-        // this.item.quantity = this.quantity;
-        this.changeQuantity.emit(this.quantity);
+        if(q<this.item.quantity){
+            this.quantity = q+1;
+            // this.item.quantity = this.quantity;
+            this.changeQuantity.emit(this.quantity);
+        }
     }
 
     removeQuantity(q:number){

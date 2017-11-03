@@ -4,17 +4,23 @@
 <ion-list class="margin-bottom-73">
     <div padding class="white-bg">
         <ion-label no-margin class="text-content" [attr.text-wrap]="viewMore ? '' : null">
-            {{item.description}}
+            {{item.product_description}}
         </ion-label>
         <button no-padding ion-button small clear (click)="viewMoreOrLess()" color="secondary" class="strong no-decoration">{{viewText}}</button>
     </div>
+
+    <ion-item *ngIf="item?.quantity<=0" padding-horizontal class="white-bg">
+        <ion-label text-center>
+            This item is currently unavailable
+        </ion-label>
+    </ion-item>
 
     <ion-item padding-horizontal class="white-bg">
         <ion-label>
             Price
         </ion-label>
         <span item-right class="text-xl">
-            {{currency}}{{item?.price}}
+            {{currency}}{{item?.sales_price}}
         </span>
     </ion-item>
 

@@ -1,6 +1,25 @@
 
+<div *ngIf="hasSavedCard" margin-top>
+    <div *ngFor="let card of Cards">
+    <ion-item *ngIf="card.card_type == paymentMethod" class="card-view" margin-bottom no-lines>
+        <ion-thumbnail class="payment-card-thumbnail" item-left>
+            <img class="payment-card-thumbnail" src="./assets/logo/visa.png">
+        </ion-thumbnail>
+        <ion-label item-right>**********647</ion-label>
+    </ion-item>
+    </div>
+</div>
+
+<ion-item *ngIf="hasSavedCard && !addMoreCard" margin-vertical no-lines (click)="addPaymentCard()">
+    <button item-left ion-button small icon-only>
+        <ion-icon name="md-add"></ion-icon>
+    </button>
+    <ion-label>Add New Card</ion-label>
+</ion-item>
+
+<div *ngIf="!hasSavedCard || addMoreCard">
 <!--Card Image-->
-<div *ngIf="paymentMethod == 'debit'|| paymentMethod == 'credit'" class="flip-container" [class.flipped]="flipped">
+<div *ngIf="(paymentMethod == 'debit'|| paymentMethod == 'credit')" class="flip-container" [class.flipped]="flipped">
     <div class="flipper">
         <div class="front">
             <div class="flash-card-front">
@@ -37,9 +56,10 @@
 </div>
 
 
+
 <!--Card Data-->
-<form *ngIf="paymentMethod == 'debit'|| paymentMethod == 'credit'"
-        [formGroup]="cardDetails" (ngSubmit)="onSubmit(cardDetails.value)">
+<form *ngIf="(paymentMethod == 'debit'|| paymentMethod == 'credit')"
+        [formGroup]="cardDetails" (ngSubmit)="onSubmit()">
     <ion-item>
         <ion-input type="tel" maxlength="20" formControlName="card_number" placeholder="Enter Card Number" (ionChange)="onChangeCardNumber($event)" (ionFocus)="flip(false)"></ion-input>
     </ion-item>
@@ -67,4 +87,5 @@
     </ion-row>
     <button margin-vertical ion-button full color="primary-dark" class="secondary" [disabled]="!cardDetails.valid">SAVE</button>
 </form>
+</div>
 

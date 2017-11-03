@@ -91,7 +91,7 @@ export class ArtworkComponent{
     }
 
     goToViewAllArtworks(artworkCategory: Category) {
-        let allArtworkModal = this.modalCtrl.create('ViewAllArtworksPage', {category: artworkCategory});
+        let allArtworkModal = this.modalCtrl.create('ViewAllArtworksPage', {artwork_category: artworkCategory});
         allArtworkModal.present();
 
         allArtworkModal.onDidDismiss(data => {
