@@ -6,7 +6,7 @@
       </ion-buttons>
     <ion-title text-center>New Gift</ion-title>
       <ion-buttons end>
-          <button ion-button clear >Send</button>
+          <button ion-button clear (click)="sendGift()">Send</button>
       </ion-buttons>
   </ion-navbar>
 
@@ -14,5 +14,9 @@
 
 
 <ion-content padding-top class="primary-light-bg">
-    <app-new-gift-card ></app-new-gift-card>
+    <app-new-gift-card
+            (artworkToSendResponse)="artworkCallbackOnChange($event)"
+            (recipientMessageResponse)="recipientMessageCallbackOnChange($event)"
+            (amountResponse)="amountCallbackOnChange($event)"
+            (paymentCardResponse)="paymentCardCallbackOnChange($event)"></app-new-gift-card>
 </ion-content>

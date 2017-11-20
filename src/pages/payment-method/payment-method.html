@@ -4,7 +4,8 @@
   <ion-navbar color="primary">
     <ion-title>Payment Method</ion-title>
       <ion-buttons end>
-          <button ion-button clear (click)="onDismiss()">Cancel</button>
+          <button ion-button clear *ngIf="selectedCard" (click)="onSelect()">Ok</button>
+          <button ion-button clear *ngIf="!selectedCard" (click)="onDismiss()">Cancel</button>
       </ion-buttons>
   </ion-navbar>
 
@@ -12,16 +13,30 @@
 
 
 <ion-content class="primary-light-bg">
-    <ion-list-header margin-top class="margin-bottom-none">
-        ACTIVE PAYMENT METHOD
-    </ion-list-header>
+    <div *ngIf="hasSavedCard; else noSavedCard">
+        <ion-list-header margin-top class="margin-bottom-none">
+            ACTIVE PAYMENT METHOD
+        </ion-list-header>
 
-    <app-saved-card></app-saved-card>
+        <div *ngFor="let card of Cards">
+            <ion-item class="card-view" margin-bottom no-lines (click)="selectCard(card)">
+                <ion-thumbnail class="payment-card-thumbnail" item-left>
+                    <img class="payment-card-thumbnail" src="./assets/logo/visa.png">
+                </ion-thumbnail>
+                <ion-label item-right>{{card.card_number | limitTo: 3}}</ion-label>
+                <ion-icon item-end *ngIf="card?.card_number == selectedCard?.card_number" name="checkmark-circle" color="primary-blue"></ion-icon>
+            </ion-item>
+        </div>
+    </div>
+    <ng-template #noSavedCards>
+        <ion-label>No Cards Found</ion-label>
+        <ion-label>Please add a card from <b>Settings->Payment Method</b> Method</ion-label>
+    </ng-template>
 
-    <ion-item margin-vertical no-lines>
-        <button item-left ion-button small icon-only>
-            <ion-icon name="md-add"></ion-icon>
-        </button>
-        <ion-label>Add New Card</ion-label>
-    </ion-item>
+    <!--<ion-item margin-vertical no-lines (click)="goToAddNewCardPage()">-->
+        <!--<button item-left ion-button small icon-only>-->
+            <!--<ion-icon name="md-add"></ion-icon>-->
+        <!--</button>-->
+        <!--<ion-label>Add New Card</ion-label>-->
+    <!--</ion-item>-->
 </ion-content>

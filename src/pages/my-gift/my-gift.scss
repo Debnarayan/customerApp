@@ -1,0 +1,7 @@
+page-my-gift {
+@extend app-artwork;
+  .artwork-item-scroller > .scroll-content {
+    height: 150px;
+    background: transparent;
+  }
+}

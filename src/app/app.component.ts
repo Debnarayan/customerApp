@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {MenuPage} from "../interfaces/menu-page.interface";
 import {AppVersion} from "@ionic-native/app-version";
 
-
 @Component({
     templateUrl: 'app.html'
 })
@@ -18,7 +17,7 @@ export class MyApp {
 
     rootPage: any = 'OnboardingPage';
 
-    constructor(public platform: Platform,
+    constructor(private platform: Platform,
                 public statusBar: StatusBar,
                 public splashScreen: SplashScreen,
                 private appVersion: AppVersion) {

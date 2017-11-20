@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PasswordValidator} from "../../validators/password.validator";
 import {InAppBrowser} from '@ionic-native/in-app-browser';
-import {AppService} from "../../services/app.service";
+import {AuthUserProvider} from "../../providers/auth/auth-user.service";
 
 @Component({
     selector: 'app-register',
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
 
     // isPasswordMatched: FormGroup;
 
-    constructor(private appService: AppService,
+    constructor(private auth: AuthUserProvider,
                 private formBuilder: FormBuilder,
                 private iab: InAppBrowser) {
         console.log('Hello RegisterComponent Component');
@@ -149,8 +149,8 @@ export class RegisterComponent implements OnInit {
     };
 
     onSubmit() {
-        console.log(this.registrationForm.value)
-        this.appService.backendCallback(this.registrationForm.value,'secure/cust_sign_up')
+        console.log(this.registrationForm.value);
+        this.auth.registerWithUserData(this.registrationForm.value)
             .subscribe((resolve)=>{
                 console.log(resolve);
                 this.registerResponse.emit(resolve);

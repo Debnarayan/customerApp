@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoginForm} from "../../interfaces/login-form.interface";
 import {AuthUserProvider} from "../../providers/auth/auth-user.service";
 import {GlobalConfig} from "../../config/global.config";
+import {StoresMockupService} from "../../services/mocks/stores-mockup/stores-mockup.service";
 
 @Component({
     selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private auth: AuthUserProvider,
-                private global: GlobalConfig) {
+                private global: GlobalConfig,
+                private storesMockup:StoresMockupService) {
         console.log('Hello LoginComponent Component');
         this.loginResponse = new EventEmitter<LoginForm>();
     }
@@ -42,11 +44,17 @@ export class LoginComponent implements OnInit {
 
     async onSubmit({value, valid}: { value: LoginForm, valid: Boolean }) {
         if (valid) {
-            await this.auth.getUserData(value, 'secure/cust_login')
+            await this.auth.getUserData(value)
                 .subscribe((data) => {
                     if (data.status !== 'fail') {
                         this.global.setCustomerId(data.response['id']);
                         this.global.setLoginState(true);
+                        this.storesMockup.getMerchantSpecificStores()
+                            .subscribe((store)=>{
+                                    if(store.status !== 'fail'){
+                                        this.storesMockup.selectDefaultStore(store.response);
+                                    }
+                            })
                     }
                     this.loginResponse.emit(data);
                 })

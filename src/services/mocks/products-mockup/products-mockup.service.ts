@@ -4,6 +4,7 @@ import {Category, Product} from "../../../interfaces/product.interface";
 import {AppService} from "../../app.service";
 import {GlobalConfig} from "../../../config/global.config";
 import {Observable} from "rxjs/Observable";
+import {AppConfig} from "../../../config/app.config";
 
 @Injectable()
 export class ProductsMockupService{
@@ -12,7 +13,8 @@ export class ProductsMockupService{
     Categories: Array<Category>;
 
   constructor(private appService:AppService,
-              private global: GlobalConfig) {
+              private global: GlobalConfig,
+              private config: AppConfig) {
       console.log("Product Mockup Service");
 
       // this.Products = [
@@ -147,14 +149,14 @@ export class ProductsMockupService{
   }
 
   getProductCategories(){
-      return this.appService.backendCallback(this.global.getCompanyId(),'secure/get_all_category')
+      return this.appService.backendCallback(this.config.APP_ID,'secure/get_all_category')
           .map(response=>{
               return response;
           })
   }
 
     getLimitedProducts(limit: Number){
-        return this.appService.backendCallback({company_id:this.global.getCompanyId(),venue_id:this.global.getVenueId(),limit: limit},'secure/get_limited_product')
+        return this.appService.backendCallback({app_id:this.config.APP_ID,venue_id:this.global.getVenueId(),limit: limit},'secure/get_limited_product')
             .map(response=>{
                 return response;
             });

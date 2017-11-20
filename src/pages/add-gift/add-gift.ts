@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {ToastService} from "../../providers/toast/toast.service";
+import {GiftCardMockupService} from "../../services/mocks/gift-card-mockup/gift-card-mockup.service";
 
-/**
- * Generated class for the AddGiftPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -14,16 +10,32 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
   templateUrl: 'add-gift.html',
 })
 export class AddGiftPage {
-
-  constructor(private viewCtrl: ViewController, public navParams: NavParams) {
+    secureGiftCode:string;
+  constructor(private navCtrl: NavController,
+              private viewCtrl: ViewController,
+              private toastService: ToastService,
+              private giftCardMockup: GiftCardMockupService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddGiftPage');
   }
 
+    appliedGiftCodeOnChange(ev){
+      this.secureGiftCode = ev;
+    }
+
     addReferredGiftToAccount(){
-      console.log("Make this section workable using EventEmitter in add-gift.component.ts")
+        if(typeof this.secureGiftCode == 'undefined'){
+            this.toastService.presentToast('Gift Code can not be blank');
+        }else{
+            this.giftCardMockup.addGiftCardToAccount(this.secureGiftCode.toUpperCase())
+                .subscribe(add => {
+                    console.log(add);
+                    this.toastService.presentToast(add.response);
+                    this.navCtrl.pop();
+                })
+        }
     }
 
     onDismiss(){

@@ -1,0 +1,61 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Gifts</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="primary-light-bg">
+    <div *ngIf="hasReceiveGift">
+        <ion-scroll scrollX="true" class="artwork-item-scroller">
+            <div class="artwork-item-container">
+                <div *ngFor="let gift of Gifts">
+                    <ion-card no-margin (click)="selectGift(gift)" class="artwork-card">
+                        <ion-icon *ngIf="selectedGift?.id == gift?.id" name="checkmark-circle" color="primary-blue"
+                                  class="artwork-check-icon"></ion-icon>
+                        <img class="artwork-img"
+                             [src]="gift?.image_name ? global.SERVER_URL +'backend/web/uploads/gift_card_image/'+ gift?.image_name : './assets/logo/no-image.jpg'">
+                    </ion-card>
+                </div>
+            </div>
+        </ion-scroll>
+        <ion-card *ngIf="selectedGift" padding>
+            <p>
+                <ion-card-title class="same-line">{{selectedGift?.sender_name}}</ion-card-title>
+                <ion-card-header no-padding class="same-line">({{selectedGift?.sender_email}})</ion-card-header>
+                <span>has sent you a gift.</span>
+            </p>
+            <ion-card-content text-center class="strong text-xl">{{selectedGift?.message}}</ion-card-content>
+            <p text-center>You have</p>
+            <h2 ion-text text-center class="text-xxl strong" color="danger">{{selectedGift?.balance}}</h2>
+            <p text-center>left</p>
+            <p class="strong">Expired On:</p>
+            <div text-center>{{selectedGift?.expired_on}}</div>
+
+            <ion-item no-lines text-center>
+                <button *ngIf="appliedGift?.id !== selectedGift?.id; else notApplied"
+                        ion-button
+                        color="secondary"
+                        class="dark"
+                        large round
+                        (click)="applyGiftCardForCurrentPayment(selectedGift)">
+                    APPLY THIS GIFT
+                </button>
+                <ng-template #notApplied>
+                    <button ion-button
+                            color="secondary"
+                            class="dark"
+                            large round
+                            (click)="cancelAppliedGiftCardForCurrentPayment(appliedGift)">
+                        CANCEL
+                    </button>
+                </ng-template>
+            </ion-item>
+        </ion-card>
+    </div>
+    <div padding *ngIf="!hasReceiveGift">
+        {{messageOnNoGiftCard}}
+    </div>
+</ion-content>

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Order} from "../../interfaces/product.interface";
 import {GlobalConfig} from "../../config/global.config";
+import {BillMockupService} from "../../services/mocks/bill-mockup/bill-mockup.service";
 
 @IonicPage()
 @Component({
@@ -10,12 +11,12 @@ import {GlobalConfig} from "../../config/global.config";
 })
 export class OrderListPage {
     Orders: Array<Order>;
-    URL: string;
-    constructor(private global: GlobalConfig,
-                private navCtrl: NavController, private navParams: NavParams) {
+    constructor(private global:GlobalConfig,
+                private navCtrl: NavController,
+                private navParams: NavParams,
+                private billMockup: BillMockupService) {
         this.Orders = navParams.get('placedOrders');
         console.log(this.Orders);
-        this.URL=this.global.SERVER_URL;
     }
 
     ionViewDidLoad() {
@@ -24,10 +25,14 @@ export class OrderListPage {
 
     placeOrder() {
         console.log(this.Orders);
-        this.calculateTotalBill(this.Orders)
-            .then((bill_data) => {
-                this.navCtrl.push('PaymentPage', {bill: bill_data});
-            });
+        this.billMockup.getAppliedGiftCardDetails()
+            .then(gift_data => {
+                this.calculateTotalBill(this.Orders)
+                    .then((bill_data) => {
+                        this.navCtrl.push('PaymentPage', {bill: bill_data, gift: gift_data});
+                    });
+            })
+
     }
 
     calculateTotalBill(orders) {
@@ -38,6 +43,10 @@ export class OrderListPage {
             total_price = total_price + (orders[i].quantity * orders[i].price);
         }
         return Promise.resolve({total_price: total_price, total_quantity: total_quantity});
+    }
+
+    goToSelectGiftCard(){
+        this.navCtrl.push('MyGiftPage');
     }
 
 }

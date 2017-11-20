@@ -1,7 +1,10 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {Category} from "../../interfaces/product.interface";
 import {ModalController, NavController, NavParams, ViewController} from "ionic-angular";
-import {timeout} from "rxjs/operator/timeout";
+import {GiftCardMockupService} from "../../services/mocks/gift-card-mockup/gift-card-mockup.service";
+import {AlertService} from "../../providers/alert/alert.service";
+import {Artwork, ArtworkCategory} from "../../interfaces/artwork.interface";
+import {GlobalConfig} from "../../config/global.config";
 
 @Component({
     selector: 'app-artwork',
@@ -10,79 +13,37 @@ import {timeout} from "rxjs/operator/timeout";
 export class ArtworkComponent{
 
     @Output() artworkResponse: EventEmitter<Object>;
+    ArtworkCategories: ArtworkCategory;
+    Artworks: Artwork[];
 
-    ArtworkCategories = [
-        {
-            id: 1,
-            name: 'Birthday'
-        },
-        {
-            id: 2,
-            name: 'Thank You'
-        },
-        {
-            id: 3,
-            name: 'Cartoon'
-        }];
-
-    Artworks = [
-        {
-            id: 1,
-            category_id:1,
-            tag: ['happy birthday', 'happy', 'birthday', 'wish'],
-            image_name: 'art1.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 2,
-            category_id:1,
-            tag: ['happy birthday', 'happy', 'birthday', 'wish'],
-            image_name: 'art2.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 3,
-            category_id:1,
-            tag: ['happy birthday', 'happy', 'birthday', 'wish'],
-            image_name: 'art3.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 4,
-            category_id:2,
-            tag: ['art', 'scenary', 'color', 'nature', 'pet', 'dog', 'street', 'draw'],
-            image_name: 'art4.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 5,
-            category_id:3,
-            tag: ['cartoon', 'batman', 'hero'],
-            image_name: 'art5.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 6,
-            category_id:3,
-            tag: ['cartoon', 'dbz', 'hero','goku'],
-            image_name: 'art6.jpg',
-            image_path: './assets/banner/artwork'
-        },
-        {
-            id: 7,
-            category_id:3,
-            tag: ['cartoon', 'dbz', 'hero','goku'],
-            image_name: 'art7.jpg',
-            image_path: './assets/banner/artwork'
-        }];
-
-    selectedArtwork:Object;
+    selectedArtwork:Artwork;
 
     constructor(private navParams: NavParams,
-                private modalCtrl:ModalController) {
+                private modalCtrl:ModalController,
+                private alertService: AlertService,
+                private global: GlobalConfig,
+                private giftcardMockup: GiftCardMockupService) {
         console.log('Hello ArtworkComponent Component');
         this.artworkResponse = new EventEmitter<Object>();
         this.selectedArtwork = navParams.get('artwork');
+        this.giftcardMockup.getArtworkCategories()
+            .subscribe((artworkCategory)=>{
+                if(artworkCategory.status == 'success'){
+                    this.ArtworkCategories = artworkCategory.response;
+                    console.log(this.ArtworkCategories);
+                    this.giftcardMockup.getArtworkImages()
+                        .subscribe((artworkImage)=>{
+                            if(artworkImage.status == 'success'){
+                                this.Artworks = artworkImage.response;
+                                console.log(this.Artworks);
+                            }else{
+                                this.alertService.commonAlert(artworkImage.status,artworkImage.response);
+                            }
+                        })
+                }else{
+                    this.alertService.commonAlert(artworkCategory.status,artworkCategory.response);
+                }
+            })
     }
 
     selectArtwork(artwork){

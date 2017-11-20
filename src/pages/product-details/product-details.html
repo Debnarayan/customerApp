@@ -26,7 +26,7 @@
     <ion-fab bottom right>
         <button ion-button round large class="no-decoration secondary" [disabled]="quantity<=0" (click)="addToCart(orderItem)">Add Item</button>
     </ion-fab>
-    <app-product-details [product]="productDetails" (changeQuantity)="quantityOnChange($event)"></app-product-details>
+    <app-product-details [product]="productDetails" (changeQuantity)="quantityOnChange($event)"  (storeResponse)="merchantStoreDetails($event)"></app-product-details>
 </ion-content>
 
 
@@ -34,8 +34,10 @@
     <ion-item no-lines class="light transparent-bg">
         <div>
             <span class="strong new-line">Select Store</span>
-            <button no-padding no-margin ion-button color="secondary" class="no-decoration" clear>
-                {{storeName}}
+            <button no-padding no-margin ion-button
+                    color="secondary" class="no-decoration text-lg" clear
+            (click)="goToStoreLists()">
+                {{defaultStore?.venue_name}}
                 <ion-icon padding-left name="ios-arrow-down"></ion-icon>
             </button>
         </div>

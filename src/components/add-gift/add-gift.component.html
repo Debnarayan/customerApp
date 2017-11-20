@@ -3,11 +3,11 @@
 </p>
 
 <ion-list class="no-line-last-child">
-    <ion-item padding-top padding-right>
-        <ion-input placeholder="Reference Email ID"></ion-input>
-    </ion-item>
+    <!--<ion-item padding-top padding-right>-->
+        <!--<ion-input placeholder="Reference Email ID"></ion-input>-->
+    <!--</ion-item>-->
     <ion-item padding-bottom padding-right>
-        <ion-input placeholder="Reference Key"></ion-input>
+        <ion-input placeholder="Enter Gift Code here" (ionChange)="getGiftCodeFromUser()" [(ngModel)]="giftCode"></ion-input>
     </ion-item>
 </ion-list>
 

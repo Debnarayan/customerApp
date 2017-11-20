@@ -24,7 +24,7 @@
         "@ionic-native/contacts": "^4.3.1",
         "@ionic-native/core": "^4.3.0",
         "@ionic-native/email-composer": "^4.2.1",
-        "@ionic-native/geolocation": "^4.2.1",
+        "@ionic-native/geolocation": "^4.3.3",
         "@ionic-native/google-maps": "^4.3.1",
         "@ionic-native/in-app-browser": "^4.2.1",
         "@ionic-native/network": "^4.2.1",
@@ -73,7 +73,9 @@
             "ionic-plugin-keyboard": {},
             "cordova-plugin-inappbrowser": {},
             "cordova-plugin-email-composer": {},
-            "cordova-plugin-geolocation": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+            },
             "cordova-plugin-app-version": {},
             "cordova-plugin-network-information": {},
             "cordova-plugin-contacts": {},

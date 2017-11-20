@@ -1,5 +1,8 @@
 <ion-item no-padding class="no-background">
     <ion-label>To:</ion-label>
-    <ion-input (ionInput)="searchContact()"></ion-input>
+    <ion-input [(ngModel)]="recipient.email" (ionBlur)="recipientOnBlur(recipient)" ></ion-input>
 </ion-item>
-<ion-textarea placeholder="Optional Message (upto 160 characters)" maxlength="160"></ion-textarea>
+<ion-textarea [(ngModel)]="recipient.message"
+              placeholder="Optional Message (upto 160 characters)"
+              maxlength="160"
+              (ionBlur)="recipientOnBlur(recipient)"></ion-textarea>

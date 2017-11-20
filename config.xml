@@ -89,7 +89,9 @@
     <plugin name="cordova-plugin-contacts" spec="^2.3.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.9" />
-    <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
     <plugin name="cordova-plugin-googlemaps" spec="^2.0.11">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCnbdTJrIWCRFhTOyLFxinctMS66gcBAXY" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyDmyXdCZ9EctNj9_rF1R-Xh8EPq6L8AD1E" />

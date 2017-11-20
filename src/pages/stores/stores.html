@@ -7,12 +7,29 @@
         <button ion-button clear icon-only color="light" (click)="goToBack()">
             <ion-icon name="ios-arrow-down"></ion-icon>
         </button>
-    <ion-title>Select Stores</ion-title>
-  </ion-navbar>
+        <ion-title>Select Stores</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="primary-dark-bg">
     <div id="map"></div>
+    <div padding class="default-store primary-dark-bg light">
+        <div text-center><u>Your Store</u></div>
+        <span class="text-xl">
+            {{defaultStore?.venue_name}}
+        </span>
+        <span class="text-lg new-line">
+            {{defaultStore?.venue_city}} - {{defaultStore?.venue_zip_code}}
+        </span>
+        <span class="new-line">
+            {{defaultStore?.venue_state}},{{defaultStore?.venue_country}}
+        </span>
+    </div>
+    <ion-fab bottom right>
+        <button ion-fab color="secondary" (click)="goToStoreLists()">
+            <ion-icon name="ios-navigate" color="primary"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

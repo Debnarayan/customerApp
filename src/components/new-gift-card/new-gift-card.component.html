@@ -3,7 +3,7 @@
         Artwork
     </ion-label>
     <ion-thumbnail item-end>
-        <img class="artwork-thumbnail" [src]="selectedArtwork ? selectedArtwork?.image_path+'/'+selectedArtwork?.image_name : './assets/logo/no-image.jpg'">
+        <img class="artwork-thumbnail" [src]="selectedArtwork ? global.SERVER_URL +'backend/web/uploads/gift_card_image/'+ selectedArtwork?.image_name : './assets/logo/no-image.jpg'">
     </ion-thumbnail>
     <ion-icon item-right color="primary-light" name="ios-arrow-forward-outline"></ion-icon>
 </ion-item>
@@ -12,7 +12,7 @@
     <ion-label class="text-sm" text-wrap>
         Add Recipient & Message
     </ion-label>
-    <ion-label>{{recipient}}</ion-label>
+    <ion-label *ngIf="selectedRecipient">{{selectedRecipient.email}}</ion-label>
     <ion-icon item-right color="primary-light" name="ios-arrow-forward-outline"></ion-icon>
 </ion-item>
 
@@ -25,7 +25,15 @@
         <ion-badge *ngIf="isGoingToSelectAmount" item-end color="primary">{{amount}}</ion-badge>
     </ion-item>
     <ion-item no-lines *ngIf="isGoingToSelectAmount">
-        <ion-range min="5" max="100" pin="true" step="5" snaps="true" [(ngModel)]="amount" color="secondary">
+        <ion-range
+                min="5"
+                max="100"
+                pin="true"
+                step="5"
+                snaps="true"
+                (ionChange)="onAmountChange()"
+                [(ngModel)]="amount"
+                color="secondary">
             <ion-label range-left>5</ion-label>
             <ion-label range-right>100</ion-label>
         </ion-range>
@@ -33,5 +41,8 @@
 </ion-list>
 <ion-item no-lines>
     <ion-label>Payment Method</ion-label>
-    <button ion-button item-right clear color="secondary" (click)="presentPaymentMethod()">Select</button>
+    <button ion-button item-right clear color="secondary" (click)="presentPaymentMethod()">
+        <span *ngIf="!paymentDoneBy">Select</span>
+        <span *ngIf="paymentDoneBy">{{paymentDoneBy?.card_number | limitTo:3}}</span>
+    </button>
 </ion-item>

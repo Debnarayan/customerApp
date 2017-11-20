@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, ViewController} from 'ionic-angular';
 import {ToastService} from "../../providers/toast/toast.service";
+import {AlertService} from "../../providers/alert/alert.service";
 
 
 
@@ -11,7 +12,8 @@ import {ToastService} from "../../providers/toast/toast.service";
 })
 export class RegisterPage {
 
-  constructor(private toastService: ToastService,
+  constructor(private alertService: AlertService,
+              private toastService: ToastService,
               private viewCtrl: ViewController) {
   }
 
@@ -26,7 +28,7 @@ export class RegisterPage {
     responseAfterRegistration(ev){
         console.log(ev);
         if(ev.status == 'fail'){
-            this.toastService.commonToast('',4000,ev.response);
+            this.alertService.commonAlert('Warning', ev.response);
         }else{
             this.toastService.commonToast('',4000,ev.response);
         }

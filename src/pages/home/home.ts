@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Content, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ProductsMockupService} from "../../services/mocks/products-mockup/products-mockup.service";
 import {LoadingService} from "../../providers/loading/loading.service";
+import {GlobalConfig} from "../../config/global.config";
 
 @IonicPage()
 @Component({
@@ -18,7 +19,9 @@ export class HomePage {
 
   constructor(private navCtrl: NavController,
               private loading: LoadingService,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private global: GlobalConfig) {
+      this.global.getCustomerId();
   }
 
   ionViewDidLoad() {

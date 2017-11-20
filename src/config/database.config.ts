@@ -4,7 +4,6 @@ import {Platform} from "ionic-angular";
 
 @Injectable()
 export class DatabaseConfig {
-
     database: SQLiteObject;
     items: Array<any>;
 
@@ -18,25 +17,81 @@ export class DatabaseConfig {
             }).then((db: SQLiteObject) => {
                 this.database = db;
                 console.log(db);
-                this.database
-                    .executeSql("CREATE TABLE IF NOT EXISTS cart " +
-                        "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "customer_id NUMBER(11), " +
-                        "product_id NUMBER(11), " +
-                        "product_name VARCHAR(50), " +
-                        "product_quantity NUMBER(4), " +
-                        "product_price NUMBER(10), " +
-                        "product_category_id NUMBER(11), " +
-                        "product_image TEXT)", {})
-                    .then((data) => {
-                        console.log("TABLE CREATED: ", data);
-                    }).catch((error) => {
-                    console.error("Unable to execute sql", error);
-                })
             }).catch((error) => {
                 console.error("Unable to open database", error);
             });
         });
+    }
+
+    createCartTable() {
+        return this.database
+            .executeSql("CREATE TABLE IF NOT EXISTS cart " +
+                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "customer_id NUMBER(11), " +
+                "product_id NUMBER(11), " +
+                "product_name VARCHAR(50), " +
+                "product_quantity NUMBER(4), " +
+                "product_price NUMBER(10), " +
+                "product_category_id NUMBER(11), " +
+                "product_image TEXT)", {})
+
+            .then((data) => {
+                console.log("CART TABLE CREATED: ", data);
+            })
+
+            .catch((error) => {
+                console.error("Unable to execute sql to create CART table", error);
+            })
+    }
+
+    createUserTable() {
+        return this.database
+            .executeSql("CREATE TABLE IF NOT EXISTS user " +
+                "(customer_id NUMBER(11) PRIMARY KEY, " +
+                "venue_id NUMBER(11), " +
+                "current_lat NUMBER(15), " +
+                "current_lng NUMBER(15))", {})
+
+            .then((data) => {
+                console.log("USER TABLE CREATED: ", data);
+            })
+
+            .catch((error) => {
+                console.error("Unable to execute sql to create USER table", error);
+            });
+    }
+
+    createUserSettingsTable(){
+        return this.database
+            .executeSql("CREATE TABLE IF NOT EXISTS user_settings " +
+                "(customer_id NUMBER(11) PRIMARY KEY, " +
+                "passcode NUMBER(4), " +
+                "notification BOOLEAN, " +
+                "payment_type VARCHAR(50))", {})
+
+            .then((data) => {
+                console.log("USER SETTINGS TABLE CREATED: ", data);
+            })
+
+            .catch((error) => {
+                console.error("Unable to execute sql to create USER SETTING table", error);
+            });
+    }
+
+    createGiftCardTable() {
+        return this.database
+            .executeSql("CREATE TABLE IF NOT EXISTS gift " +
+                "(customer_id NUMBER(11) PRIMARY KEY, " +
+                "gift_id NUMBER(11), " +
+                "balance FLOAT(6,2))", {})
+
+            .then((data) => {
+                console.log("GIFT TABLE CREATED: ", data);
+            })
+
+            .catch((error) => {
+                console.error("Unable to execute sql to create GIFT table", error);
+            });
     }
 
     storeOrderData(cust_id, obj): Promise<any> {
@@ -122,9 +177,26 @@ export class DatabaseConfig {
             });
     }
 
-    selectData(): Promise<void | Array<Object>> {
+    selectRecordsByTableName(tableName: string, fields: any, conditionalFields: any, conditionalValues: any){
+        var selectQuery = 'SELECT '+ fields +
+                          ' FROM '+ tableName;
+
+        if (typeof conditionalFields == 'string') {
+            if(conditionalFields !== ''){
+                selectQuery = selectQuery + ' WHERE ' + conditionalFields + ' = ' + conditionalValues;
+            }
+        } else {
+            for (let i = 0; i < conditionalFields.length; i++) {
+                if (i > 0) {
+                    selectQuery = selectQuery + ' AND ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }else{
+                    selectQuery = selectQuery + ' WHERE ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }
+            }
+        }
+
         return this.database
-            .executeSql('SELECT * FROM cart', [])
+            .executeSql(selectQuery, [])
             .then((data) => {
 
                 this.items = [];
@@ -148,30 +220,153 @@ export class DatabaseConfig {
             }).catch(e => alert(JSON.stringify(e)));
     }
 
-    createUserTable() {
-        return this.database
-            .executeSql("CREATE TABLE IF NOT EXISTS user " +
-                "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "customer_id NUMBER(11), " +
-                "current_location VARCHAR(50), " +
-                "venue_id NUMBER(11), " +
-                "passcode NUMBER(4), " +
-                "notification BOOLEAN, " +
-                "payment_type VARCHAR(50))", {})
+    insertRecordByTableName(tableName: string, fields: Object, values: Object) {
+        var insertQuery = 'INSERT INTO ' + tableName +
+            ' (' + fields + ')' +
+            ' VALUES(' + values + ')';
+        console.log(insertQuery);
 
+        this.database.executeSql(insertQuery, {})
+
+            .then(() => {
+                console.log("Record Inserted" + values);
+            })
+
+            .catch(() => alert('Unable to store record in '+tableName+' table'));
     }
 
     insertDataByLabelName(tableName, labelName, value) {
-        this.createUserTable()
-            .then((data) => {
-                console.log("USER TABLE CREATED: ", data);
-                this.database.executeSql('INSERT INTO ' + tableName +
-                    '(' + labelName + ') ' +
-                    'VALUES(?)', [value])
+        this.database.executeSql('INSERT INTO ' + tableName +
+            '(' + labelName + ') ' +
+            'VALUES(?)', [value])
+            .then(() => {
+                console.log("Data Inserted" + value);
             })
-            .catch((error) => {
-            console.error("Unable to execute sql to create USER table", error);
-        });
+            .catch(() => alert('Unable to store user data'));
     }
 
+    updateRecordByTableName(tableName: string, fields: any, values: any, conditionalFields: any, conditionalValues: any) {
+        var query = 'UPDATE ' + tableName;
+        if (typeof fields == 'string') {
+            query = query + ' SET ' + fields + ' = ' + values;
+        } else {
+            for (let i = 0; i < fields.length; i++) {
+                if (i > 0) query = query + ' AND';
+                query = query + ' SET ' + fields[i] + ' = ' + values[i];
+            }
+        }
+
+        if (typeof conditionalFields == 'string') {
+            query = query + ' WHERE ' + conditionalFields + ' = ' + conditionalValues;
+        } else {
+            for (let i = 0; i < conditionalFields.length; i++) {
+                if (i > 0) query = query + ' AND';
+                query = query + ' WHERE ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+            }
+        }
+
+        this.database.executeSql(query, null)
+            .then((data) => {
+                console.log(tableName + 'Successfully updated');
+            })
+            .catch(() => {
+                console.log('Error occured to update ' + tableName + 'table');
+            });
+    }
+
+    updateDataByLabelName(tableName, labelName, value, conditionalField, conditionalValue) {
+        this.database.executeSql('UPDATE ' + tableName +
+            ' SET ' + labelName + ' = ' + value +
+            ' WHERE ' + conditionalField + ' = ' + conditionalValue, [])
+            .then(() => {
+                console.log("Data Updated");
+            })
+            .catch(() => alert('Unable to update user data'));
+    }
+
+    // selectDataByLabelName(tableName, labelName, conditionalField, conditionalValue) {
+    //     var addQuery = '';
+    //     if (conditionalField !== '') {
+    //         addQuery = ' WHERE ' + conditionalField + ' = ' + conditionalValue;
+    //     }
+    //     var query = 'SELECT ' + labelName +
+    //         ' FROM ' + tableName +
+    //         addQuery;
+    //     console.log(query);
+    //
+    //     var selectedData = this.database.executeSql(query, null)
+    //         .then((data) => {
+    //             return data.rows.item(0);
+    //         })
+    //         .catch(() => {
+    //             console.log('Unable to get '+ tableName +' data');
+    //             return false;
+    //
+    //         });
+    //     console.log(selectedData);
+    //     return Promise.all([selectedData]);
+    // }
+
+    selectDataByTableName(tableName:string, labelName:any, conditionalFields:any, conditionalValues:any) {
+        var selectQuery = 'SELECT ' + labelName +
+                          ' FROM ' + tableName;
+
+        if (typeof conditionalFields == 'string') {
+            if(conditionalFields !== ''){
+                selectQuery = selectQuery + ' WHERE ' + conditionalFields + ' = ' + conditionalValues;
+            }
+        } else {
+            for (let i = 0; i < conditionalFields.length; i++) {
+                if (i > 0) {
+                    selectQuery = selectQuery + ' AND ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }else{
+                    selectQuery = selectQuery + ' WHERE ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }
+            }
+        }
+
+        console.log(selectQuery);
+
+        var selectedData = this.database.executeSql(selectQuery, null)
+            .then((data) => {
+                return data.rows.item(0);
+            })
+            .catch(() => {
+                console.log('Unable to get '+ tableName +' data');
+                return false;
+
+            });
+        console.log(selectedData);
+        return Promise.all([selectedData]);
+    }
+
+    deleteRecordByTableName(tableName: string, conditionalFields: any, conditionalValues: any) {
+        var deleteQuery = 'DELETE FROM ' + tableName;
+        if (typeof conditionalFields == 'string') {
+            deleteQuery = deleteQuery + ' WHERE ' + conditionalFields + ' = ' + conditionalValues;
+        } else {
+            for (let i = 0; i < conditionalFields.length; i++) {
+                if (i > 0) {
+                    deleteQuery = deleteQuery + ' AND ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }else{
+                    deleteQuery = deleteQuery + ' WHERE ' + conditionalFields[i] + ' = ' + conditionalValues[i];
+                }
+            }
+        }
+
+        console.log(deleteQuery);
+
+        return this.database
+            .executeSql(deleteQuery, null)
+
+            .then((data) => {
+                console.log(tableName + ' table record successfully deleted');
+                return true;
+            })
+
+            .catch(() => {
+                console.log('Error occured to delete ' + tableName + ' table\'s record');
+                return false;
+            });
+    }
 }

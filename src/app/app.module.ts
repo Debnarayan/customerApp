@@ -30,6 +30,7 @@ import {AlertService} from '../providers/alert/alert.service';
 import {LoadingService} from '../providers/loading/loading.service';
 import {ToastService} from "../providers/toast/toast.service";
 import {AppService} from "../services/app.service";
+// import { GoogleMapsProvider } from '../providers/google-maps/google-maps';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import {AppService} from "../services/app.service";
         ConnectivityService,
         AlertService,
         LoadingService,
-        ToastService
+        ToastService,
+    // GoogleMapsProvider
     ]
 })
 export class AppModule {

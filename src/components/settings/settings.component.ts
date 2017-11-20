@@ -13,6 +13,7 @@ export class SettingsComponent {
               private toastService: ToastService,
               private iab: InAppBrowser) {
     console.log('Hello SettingsComponent Component');
+
   }
 
     goToCardDetails(){

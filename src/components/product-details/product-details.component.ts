@@ -1,14 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Category, Product} from "../../interfaces/product.interface";
+import {StoresMockupService} from "../../services/mocks/stores-mockup/stores-mockup.service";
+import {Store} from "../../interfaces/stores.interface";
 
 @Component({
     selector: 'app-product-details',
     templateUrl: 'product-details.component.html'
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit{
 
     @Input('product') item: Product;
     @Output() changeQuantity: EventEmitter<Number>;
+    @Output() storeResponse: EventEmitter<Store[]>;
 
     viewMore: boolean = false;
     viewText: string = 'more';
@@ -17,10 +20,26 @@ export class ProductDetailsComponent {
     // amount: number = 10;
     quantity:number = 0;
 
-    constructor() {
+    Stores: Store[];
+
+    constructor(private storesMockup: StoresMockupService) {
         console.log('Hello ProductDetailsComponent Component ');
         // console.log(this.product.description);
         this.changeQuantity = new EventEmitter<Number>();
+        this.storeResponse = new EventEmitter<Store[]>();
+    }
+
+    ngOnInit(){
+        this.storesMockup.getMerchantSpecificStores()
+            .subscribe((store)=>{
+                console.log(store);
+                if(store.status == 'fail'){
+                    this.Stores = [];
+                }else{
+                    this.Stores = store.response;
+                }
+                this.storeResponse.emit(this.Stores);
+            })
     }
 
     viewMoreOrLess() {

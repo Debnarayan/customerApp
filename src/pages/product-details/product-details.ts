@@ -4,6 +4,8 @@ import {Category, Order, Product} from "../../interfaces/product.interface";
 import {ToastService} from "../../providers/toast/toast.service";
 import {DatabaseConfig} from "../../config/database.config";
 import {GlobalConfig} from "../../config/global.config";
+import {StoresMockupService} from "../../services/mocks/stores-mockup/stores-mockup.service";
+import {Store} from "../../interfaces/stores.interface";
 
 
 @IonicPage()
@@ -28,7 +30,8 @@ export class ProductDetailsPage implements OnInit {
     productDetails: Product;
     categoryDetails: Category;
     // imgName:string;
-    storeName: string = "No Store Selected";
+    Stores: Store[];
+    defaultStore: Store;
     quantity: number = 0;
     totalQuantity: number = 0;
 
@@ -38,18 +41,12 @@ export class ProductDetailsPage implements OnInit {
                 private viewCtrl: ViewController,
                 private dbConfig: DatabaseConfig,
                 private myElement: ElementRef,
-                private toast: ToastService) {
+                private toast: ToastService,
+                private storeMockup: StoresMockupService) {
         //===============================
         this.showheader = false;
         this.hideheader = true;
         //===============================
-
-        this.dbConfig.selectData()
-            .then((data) => {
-            if(data){
-                this.calculateTotalOrderQuantity(data);
-            }
-            });
 
         this.orderItem = navParams.get('item');
         console.log(this.orderItem);
@@ -60,6 +57,16 @@ export class ProductDetailsPage implements OnInit {
 
     //=======================================
     ngOnInit() {
+        console.log('oninit');
+        this.dbConfig.createCartTable()
+            .then(()=>{
+                this.dbConfig.selectRecordsByTableName('cart','*', 'customer_id', this.global.getCustomerId())
+                    .then((data) => {
+                        if(data){
+                            this.calculateTotalOrderQuantity(data);
+                        }
+                    });
+            })
 // Ionic scroll element
         this.ionScroll = this.myElement.nativeElement.getElementsByClassName('scroll-content')[0];
 // On scroll function
@@ -85,6 +92,11 @@ export class ProductDetailsPage implements OnInit {
         console.log('ionViewDidLoad ProductDetailsPage ');
     }
 
+    ionViewWillEnter(){
+        console.log('ionViewWillEnter ProductDetailsPage ');
+        this.setDefaultStore(this.Stores);
+    }
+
     onDismiss() {
         this.toast.dismissToast()
             .then(() => {
@@ -100,6 +112,24 @@ export class ProductDetailsPage implements OnInit {
         this.quantity = ev;
     }
 
+    merchantStoreDetails(ev){
+        console.log('event');
+        this.Stores = ev;
+        this.setDefaultStore(this.Stores);
+    }
+
+    setDefaultStore(stores){
+        if(typeof stores !== 'undefined'){
+            this.storeMockup.selectDefaultStore(stores)
+                .then(store => {
+                    this.defaultStore = store;
+                })
+        }else {
+            this.defaultStore = {venue_id:null, venue_name:'No Store Selected'};
+        }
+        console.log(this.defaultStore);
+    }
+
     addToCart(item: Order) {
         this.orderItem.quantity = this.quantity;
         console.log(item);
@@ -107,7 +137,7 @@ export class ProductDetailsPage implements OnInit {
         this.dbConfig.storeOrderData(this.global.getCustomerId(), this.orderItem)
             .then(() => {
                 setTimeout(() => {
-                    this.dbConfig.selectData()
+                    this.dbConfig.selectRecordsByTableName('cart','*', 'customer_id', this.global.getCustomerId())
                         .then((data) => {
                             if (data) {
                                 this.calculateTotalOrderQuantity(data);
@@ -119,7 +149,7 @@ export class ProductDetailsPage implements OnInit {
     }
 
     goToOrders() {
-        this.dbConfig.selectData()
+        this.dbConfig.selectRecordsByTableName('cart','*', 'customer_id', this.global.getCustomerId())
             .then((data) => {
                 console.log(data);
                 if (data) {
@@ -134,4 +164,14 @@ export class ProductDetailsPage implements OnInit {
             this.totalQuantity = orders[i]['quantity'] + this.totalQuantity;
         }
     }
+
+    goToStoreLists(){
+        if(this.Stores.length > 0){
+            this.navCtrl.push('StoreListPage',{stores: this.Stores, default_store: this.defaultStore})
+        }else{
+            this.toast.commonToast('',3000,'You have no store details',true)
+        }
+
+    }
+
 }

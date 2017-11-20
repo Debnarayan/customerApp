@@ -4,6 +4,7 @@ import {AppService} from "../../services/app.service";
 import {GlobalConfig} from "../../config/global.config";
 import {Card} from "../../interfaces/payment.interface";
 import {LoadingService} from "../../providers/loading/loading.service";
+import {PaymentCardMockupService} from "../../services/mocks/payment-card-mockup/payment-card-mockup.service";
 
 @Component({
   selector: 'app-card-type',
@@ -25,32 +26,19 @@ export class CardTypeComponent implements OnInit,OnChanges{
 
     constructor(private appService: AppService,
                 private global: GlobalConfig,
-                private loading: LoadingService) {
+                private loading: LoadingService,
+                private paymentCardMockup: PaymentCardMockupService) {
         console.log('Hello CardTypeComponent Component');
     }
 
     ngOnInit(){
-        this.appService.backendCallback(this.global.getCustomerId(),'secure/get_saved_card_data')
-            .subscribe(resolve=>{
-                console.log(resolve);
-                if(resolve.status == 'fail'){
-                    this.hasSavedCard = false;
-                }else{
-                    if(resolve.response.length > 0){
-                        this.hasSavedCard = true;
-                        this.Cards = resolve.response;
-                    }else{
-                        this.hasSavedCard = false;
-                    }
-                }
-            })
     }
 
     ngOnChanges(changes) {
         this.hasSavedCard = true;
         this.addMoreCard=false;
         console.log(changes.paymentMethod);
-        this.loading.dismissLoading();
+        this.getCardDetails();
     }
 
     flip(state:boolean){
@@ -82,8 +70,28 @@ export class CardTypeComponent implements OnInit,OnChanges{
             .subscribe(resolve=>{
                 console.log(resolve);
                 if(resolve.status == 'success'){
-                    this.ngOnInit();
+                    this.getCardDetails();
                     this.cardDetails.reset();
+                }
+            })
+    }
+
+    getCardDetails(){
+        this.loading.presentLoading();
+        this.paymentCardMockup.getSavedCardDetails()
+            .subscribe(cards => {
+                console.log(cards);
+                this.loading.dismissLoading();
+                if (cards.status == 'fail') {
+                    this.hasSavedCard = false;
+                } else {
+                    if (cards.response.length > 0) {
+                        this.hasSavedCard = true;
+                        this.Cards = cards.response;
+                        this.paymentCardMockup.setSavedCardDetails(cards.response);
+                    } else {
+                        this.hasSavedCard = false;
+                    }
                 }
             })
     }

@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Store Lists</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="primary-light-bg">
+        <div *ngFor="let store of Stores" (click)="setAsDefaultStore(store)">
+            <div ion-item no-lines padding margin-vertical class="light-bg" *ngIf="store?.venue_lat !== null || store?.venue_lon !== null">
+                <span class="text-lg">{{store?.venue_name}}</span>
+                <!--<div item-content>-->
+                <span class="new-line">{{store?.venue_city}} - {{store?.venue_zip_code}}</span>
+                <span class="new-line">{{store?.venue_state}},{{store?.venue_country}}</span>
+                <ion-icon item-end *ngIf="store?.venue_id == defaultVenue?.venue_id" name="checkmark-circle" color="primary-blue"></ion-icon>
+                <!--</div>-->
+            </div>
+        </div>
+</ion-content>

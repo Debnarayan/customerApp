@@ -5,7 +5,7 @@
         <ion-thumbnail class="payment-card-thumbnail" item-left>
             <img class="payment-card-thumbnail" src="./assets/logo/visa.png">
         </ion-thumbnail>
-        <ion-label item-right>**********647</ion-label>
+        <ion-label item-right>{{card.card_number | limitTo: 3}}</ion-label>
     </ion-item>
     </div>
 </div>

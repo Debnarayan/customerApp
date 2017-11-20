@@ -71,30 +71,41 @@ export class SavedCardComponent {
                 {
                     text: 'Submit',
                     handler: data => {
-                        this.loading.presentCustomLoading('ios','Payment in progress. Don\'t <b>Close</b> the app Or don\'t press <b>Back</b> button');
+                        this.loading.presentCustomLoading('ios', 'Payment in progress. Don\'t <b>Close</b> the app Or don\'t press <b>Back</b> button');
 
                         card.cvv = data.cvv
 
-                        this.dbConfig.selectData()
+                        // console.log(this.navCtrl.getPrevious().data.component.name);
+
+                        this.dbConfig.selectRecordsByTableName('cart', '*', 'customer_id', this.global.getCustomerId())
                             .then(orders => {
-                                this.paymentCardMockup.payUsingCardDetails(card,orders,this.bill)
-                                    .subscribe(payment => {
-                                        console.log(payment);
-                                        this.loading.dismissLoading();
-                                        if (payment.status == 'success') {
-                                            this.dbConfig.deleteRecord(this.global.getCustomerId())
-                                                .then(isSuccess=>{
-                                                    console.log(isSuccess);
-                                                    if(isSuccess){
-                                                        this.navCtrl.popToRoot()
-                                                            .then(()=>{
-                                                                this.alert.commonAlert('Success', 'Payment successfully completed. Your payment Transaction number is <b>#' + payment.response.transaction_id + '</b>');
-                                                            });
-                                                    }
-                                                })
-                                        } else {
-                                            this.alert.commonAlert('Error',payment.response);
-                                        }
+                                this.dbConfig.selectDataByTableName('gift', ['gift_id', 'balance'], 'customer_id', this.global.getCustomerId())
+                                    .then(gift => {
+                                        this.paymentCardMockup.payUsingCardDetails(card, orders, this.bill, gift[0])
+                                            .subscribe(payment => {
+                                                console.log(payment);
+                                                this.loading.dismissLoading();
+                                                if (payment.status == 'success') {
+                                                    this.dbConfig.deleteRecord(this.global.getCustomerId())
+                                                        .then(isSuccess => {
+                                                            console.log(isSuccess);
+                                                            if (isSuccess) {
+                                                                this.dbConfig.deleteRecordByTableName('gift','customer_id',this.global.getCustomerId())
+                                                                    .then(isGiftDeleted => {
+                                                                        console.log(isGiftDeleted);
+                                                                        this.navCtrl.popToRoot()
+                                                                            .then(() => {
+                                                                                this.alert.commonAlert('Success', 'Payment successfully completed for bill number <b>#'+ payment.response.bill_id +'</b>. Your payment Transaction number is <b>#' + payment.response.transaction_id + '</b>');
+                                                                            });
+                                                                    })
+                                                            }else{
+                                                                //close app
+                                                            }
+                                                        })
+                                                } else {
+                                                    this.alert.commonAlert('Error', payment.response);
+                                                }
+                                            })
                                     })
 
                             })

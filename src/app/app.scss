@@ -231,8 +231,16 @@ text-size
 //---------------------------------------
 //text-colors
 //---------------------------------------
+.white{
+  color: color($colors,white);
+}
+
 .light{
   color: color($colors,light);
+}
+
+.dark{
+  color: color($colors,dark);
 }
 
 .secondary{
