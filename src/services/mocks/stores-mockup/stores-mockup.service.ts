@@ -64,4 +64,13 @@ export class StoresMockupService{
 
         return Promise.resolve(defaultStore);
     }
+
+    userCurrentLocation(loc){
+        if(loc){
+            this.dbConfig.createLocationTable()
+                .then(()=>{
+                    this.dbConfig.updateDataByLabelName()
+                })
+        }
+    }
 }

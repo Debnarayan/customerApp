@@ -5,6 +5,7 @@ import {AuthAppProvider} from "../../providers/auth/auth-app.service";
 import {ConnectivityService} from "../../providers/connectivity/connectivity.service";
 import {AlertService} from "../../providers/alert/alert.service";
 import {LoadingService} from "../../providers/loading/loading.service";
+import {StoresMockupService} from "../../services/mocks/stores-mockup/stores-mockup.service";
 
 
 @IonicPage()
@@ -21,7 +22,8 @@ export class OnboardingPage {
                 private authApp: AuthAppProvider,
                 private loading: LoadingService,
                 private connectService: ConnectivityService,
-                private alert: AlertService) {
+                private alert: AlertService,
+                private storesMockup: StoresMockupService) {
     }
 
     ionViewDidLoad() {
@@ -55,6 +57,7 @@ export class OnboardingPage {
         this.geolocation.getCurrentPosition().then((resp) => {
             console.log('Location:');
             console.log(resp);
+            this.storesMockup.userCurrentLocation(resp);
             // resp.coords.latitude
             // resp.coords.longitude
         }).catch((error) => {
